@@ -1,0 +1,16 @@
+// src/Components/Navbar/Navbar.module.scss
+
+.navbar {
+    background: $p-bcg; // Uses the gradient variable
+    color: $p-c; // Uses the primary color variable
+    padding: 20px;
+}
+
+.navList {
+    display: flex;
+    gap: 20px;
+
+    a {
+        color: $p-c; // Ensuring link color is consistent
+    }
+}
