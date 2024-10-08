@@ -1,18 +1,33 @@
-// src/index.scss
-@import "./variables"; // Adjust the path based on your project structure
-@import url("https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Bitter:ital,wght@0,100..900;1,100..900&family=Fredericka+the+Great&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Zeyada&display=swap");
+@import "./_variables"; // Import variables at the top
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    min-height: 100vh;
+
+    font-family: $Roboto;
+
+    // Light Theme
+    background-color: $d-bcg;
+    color: $d-c;
+
+    // Dark Theme
+    &[data-theme="dark"] {
+        background-color: $l-bcg;
+    }
+}
+
+#root {
+    min-height: 100vh;
 }
 
 a {
-    text-decoration: none;
+    text-decoration: inherit;
     color: inherit;
 }
 

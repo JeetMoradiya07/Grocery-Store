@@ -1,16 +1,54 @@
 // src/Components/Navbar/Navbar.module.scss
 
 .navbar {
-    background: $p-bcg; // Uses the gradient variable
-    color: $p-c; // Uses the primary color variable
-    padding: 20px;
+    background: $radial-bcg;
+    color: $d-c; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px 10px 60px;
+    user-select: none;
 }
 
-.navList {
-    display: flex;
-    gap: 20px;
+.active {
+    color: $p-c; 
+}
 
-    a {
-        color: $p-c; // Ensuring link color is consistent
+.logo {
+    height: 60px;
+
+    img {
+        height: 100%; 
+    }
+}
+
+.NavItems {
+    display: flex;
+    align-items: center;
+    gap: 30px; 
+
+    li {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.pfp {
+    border-radius: 50%;
+
+    img {
+        height: 100%;
+        border-radius: 50%;
     }
 }

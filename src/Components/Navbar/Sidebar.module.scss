@@ -1,0 +1,37 @@
+// Sidebar.module.scss
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: $d-bcg;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    padding: 70px 30px;
+
+    &.open {
+        right: 0;
+    }
+
+    .closeButton {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: $d-c;
+    }
+
+    .loginButton {
+        width: 100%;
+        padding: 0.5rem;
+        background-color: transparent;
+        color: $d-c;
+        border: 1.7px solid $p-c;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}
