@@ -13,12 +13,13 @@ body {
     font-family: $Roboto;
 
     // Light Theme
-    background-color: $d-bcg;
-    color: $d-c;
+    background-color: $d-bcg !important;
+    color: $d-c !important;
 
     // Dark Theme
-    &[data-theme="dark"] {
-        background-color: $l-bcg;
+    &[data-theme="Light"] {
+        background-color: $l-bcg !important;
+        color: $l-c !important;
     }
 }
 

@@ -1,36 +1,19 @@
-import React, {useState, useEffect} from "react";
+import {useState} from "react";
 import {NavLink} from "react-router-dom";
+import Sidebar from "./Sidebar";
 import styles from "./Navbar.module.scss";
 import logo from "/src/assets/Images/WDP.png";
-import {FaUserCircle} from "react-icons/fa";
-import {FaCartShopping} from "react-icons/fa6";
-import Sidebar from "./Sidebar"; // Import Sidebar component
+import {FaUserCircle} from "react-icons/fa"; // Importing FaUserCircle
 
 const Navbar = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-    const [user, setUser] = useState({name: "John Doe", pfp: null}); // Example user object
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to handle sidebar visibility
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    useEffect(() => {
-        document.documentElement.setAttribute("data-theme", theme);
-        if (theme === "dark") {
-            document.body.style.backgroundColor = "#030303";
-            document.body.style.color = "#f5f5f5";
-        } else {
-            document.body.style.backgroundColor = "#f5f5f5";
-            document.body.style.color = "#030303";
-        }
-    }, [theme]);
-
-    const toggleTheme = () => {
-        const newTheme = theme === "light" ? "dark" : "light";
-        setTheme(newTheme);
-        localStorage.setItem("theme", newTheme);
+    const openSidebar = () => {
+        setIsSidebarOpen(true);
     };
 
-    // Toggle sidebar visibility
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
+    const closeSidebar = () => {
+        setIsSidebarOpen(false);
     };
 
     return (
@@ -56,21 +39,13 @@ const Navbar = () => {
                         About
                     </NavLink>
                 </li>
-                <li onClick={toggleSidebar}>
-                    {" "}
-                    {/* Clicking this will open the sidebar */}
-                    <div className={styles.pfp}>
-                        {user.pfp ? (
-                            <img src={user.pfp} alt="User Profile" className={styles.userImage} />
-                        ) : (
-                            <FaUserCircle size={24} /> // Placeholder icon when no PFP
-                        )}
-                    </div>
+                {/* Sidebar opens on clicking the profile icon */}
+                <li className={styles.login}>
+                    <FaUserCircle size={30} /> 
                 </li>
             </ul>
-
-            {/* Sidebar component */}
-            <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+            {/* Sidebar component should be rendered outside the ul */}
+            <Sidebar isOpen={isSidebarOpen} onClick={openSidebar} onClose={closeSidebar} />
         </nav>
     );
 };

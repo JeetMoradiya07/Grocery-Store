@@ -4,7 +4,9 @@ import Layout from "./layouts/Layout";
 import HomePage from "./pages/HomePage";
 import StorePage from "./pages/StorePage";
 import AboutPage from "./pages/AboutPage";
-import Loading from "./Components/UI/Loading"; 
+import Loading from "./Components/UI/Loading";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Login/Register";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -30,6 +32,8 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="store" element={<StorePage />} />
                 <Route path="about" element={<AboutPage />} />
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
             </Route>
         </Routes>
     );
