@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px 10px 60px;
+    padding: 5px 30px 5px 60px;
     user-select: none;
 }
 
@@ -27,11 +27,11 @@
 .NavItems {
     display: flex;
     align-items: center;
-    gap: 30px;
 
     li {
         display: flex;
         align-items: center;
+        padding: 20px;
     }
 }
 

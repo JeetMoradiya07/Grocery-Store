@@ -7,12 +7,17 @@
     .Form {
         border: 3px solid $p-bcg;
         width: 35%;
-        gap: 10px;
+        gap: 13px;
         display: flex;
         flex-direction: column;
         border-radius: 10px;
         padding: 20px;
         box-shadow: 0 0 20px 10px $p-bcg;
+        
+        &:focus-within{
+            box-shadow: 0 0 30px 1px $p-c;
+
+        }
 
         .button {
             border-radius: 3px;
@@ -35,16 +40,16 @@
         }
 
         .button2 {
-            border-radius: 3px;
+            border-radius: 8px;
             margin-top: 7px;
-            padding: 7px 17px;
+            padding: 11px 17px;
             background: $l-bcg; // Base background color
             color: $l-c;
             outline: none;
 
             &:hover,
             &:active {
-                box-shadow: 0 0 10px 2px $d-c;
+                box-shadow: 0 0 10px 1px $d-c;
             }
         }
     }

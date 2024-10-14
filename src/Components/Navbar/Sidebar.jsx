@@ -14,7 +14,7 @@ const sidebarVariants = {
         },
     },
     closed: {
-        clipPath: "circle(16px at calc(100% - 65px) 45px)",
+        clipPath: "circle(16px at calc(100% - 65px) 40px)",
         transition: {
             type: "spring",
             stiffness: 400,
@@ -25,18 +25,18 @@ const sidebarVariants = {
 
 const pfpVariants = {
     open: {
-        top: "25px", // Set top to 50px when opened
+        top: "15px", // Set top to 50px when opened
         right: "50%",
         transform: "translateX(50%)",
-        zoom: 2,
-        transition: {type: "spring", stiffness: 100},
+        zoom: 3,
+        transition: {type: "spring",damping: 10, stiffness: 150},
     },
     closed: {
-        top: "30px", // Default position when closed
+        top: "25px", // Default position when closed
         right: "50px",
         transform: "translateX(0)",
         zoom: 1,
-        transition: {type: "spring", stiffness: 100},
+        transition: {type: "spring",damping: 10, stiffness: 150},
     },
 };
 
