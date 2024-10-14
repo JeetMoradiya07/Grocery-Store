@@ -2,10 +2,11 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 25%;
-    padding: 150px 10px 20px 10px;
+    width: 475px;
+    padding: 160px 10px 20px 10px;
     height: 100vh;
-    background-color: #fff;
+    background-color: $l-bcg;
+    color: $l-c;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 100;
     overflow: hidden;
@@ -37,7 +38,7 @@
     right: 50px;
     cursor: pointer;
     font-size: 32px;
-    color: black;
+    color: $l-c;
 
     &:hover,
     &:active {
@@ -54,9 +55,18 @@
     margin-bottom: 20px;
 }
 
+.pfpWrapper {
+    .userName {
+        text-align: center;
+        position: relative;
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+}
+
 .pfp {
     border-radius: 50%;
-    color: black;
+    color: $l-c;
     position: absolute;
     top: 30px;
     right: 50%;

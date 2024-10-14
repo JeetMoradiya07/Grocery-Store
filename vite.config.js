@@ -1,6 +1,11 @@
 import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path"; // Import path module
+import {fileURLToPath} from "url"; // Import fileURLToPath
+import {dirname} from "path"; // Import dirname
+
+const __filename = fileURLToPath(import.meta.url); // Get the current file path
+const __dirname = dirname(__filename); // Get the directory name
 
 export default defineConfig({
     plugins: [react()],
@@ -18,6 +23,6 @@ export default defineConfig({
     },
     server: {
         host: true,
-        port: 7777,
+        port: 777,
     },
 });

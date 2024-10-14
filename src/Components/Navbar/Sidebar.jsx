@@ -3,10 +3,11 @@ import {NavLink} from "react-router-dom";
 import styles from "./Sidebar.module.scss";
 import {FaUserCircle} from "react-icons/fa";
 import {IoClose} from "react-icons/io5";
+import {useState} from "react";
 
 const sidebarVariants = {
     open: {
-        clipPath: `circle(1000px at calc(100% - 40px) 40px)`,
+        clipPath: `circle(1500px at calc(100% - 40px) 40px)`,
         transition: {
             type: "spring",
             stiffness: 30,
@@ -25,7 +26,7 @@ const sidebarVariants = {
 
 const pfpVariants = {
     open: {
-        top: "15px",
+        top: "20px",
         right: "50%",
         transform: "translateX(50%)",
         zoom: 3,
@@ -39,6 +40,8 @@ const pfpVariants = {
 };
 
 const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart}) => {
+    const [userName, setuserName] = useState("Fuck Your Name");
+
     const stopPropagation = (e) => {
         e.stopPropagation();
     };
@@ -57,9 +60,14 @@ const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart}) => {
                 variants={sidebarVariants}
                 onClick={stopPropagation}
             >
-                <motion.div className={styles.pfp} onClick={onClick} variants={pfpVariants} animate={isOpen ? "open" : "closed"}>
-                    <FaUserCircle size={30} />
-                </motion.div>
+                <div className={styles.pfpWrapper}>
+                    <motion.div className={styles.pfp} onClick={onClick} variants={pfpVariants} animate={isOpen ? "open" : "closed"}>
+                        <FaUserCircle size={30} />
+                    </motion.div>
+                    <div className={styles.userName}>
+                        <h2>{userName}</h2>
+                    </div>
+                </div>
                 {isOpen && (
                     <button onClick={onClose} className={styles.closeButton}>
                         <IoClose />
@@ -72,7 +80,10 @@ const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart}) => {
                         </NavLink>
                     </li>
                     <li className={styles.menu_item}>
-                        <button className={styles.Button} onClick={toggleCart}>Cart</button> {/* Toggle cart on click */}
+                        <button className={styles.Button} onClick={toggleCart}>
+                            Cart
+                        </button>{" "}
+                        {/* Toggle cart on click */}
                     </li>
                 </ul>
             </motion.div>

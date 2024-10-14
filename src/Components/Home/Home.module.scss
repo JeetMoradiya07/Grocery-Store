@@ -3,10 +3,36 @@
     padding-top: 80px;
 
     .intro_section {
+        position: relative;
         height: 85vh;
         width: 100%;
         background: url("../../assets/Images/HomeBackground.webp") no-repeat center center fixed;
         background-size: cover;
         transition: background-position 0.1s;
+        user-select: none;
+        
+    }
+    
+  
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust color and opacity */
+        z-index: 1; /* Ensure overlay is above the image */
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .imageContainer {
+            width: 30%;
+
+            img {
+                width: 100%;
+            }
+        }
     }
 }

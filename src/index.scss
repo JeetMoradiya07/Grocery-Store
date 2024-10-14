@@ -12,14 +12,19 @@ body {
 
     font-family: $Roboto;
 
-    // Light Theme
+    // Dark Theme
     background-color: $d-bcg !important;
     color: $d-c !important;
 
-    // Dark Theme
+    // Light Theme
     &[data-theme="Light"] {
         background-color: $l-bcg !important;
         color: $l-c !important;
+    }
+
+    *::selection {
+        background-color: $s-c !important; // Ensure the background color is applied
+        color: $d-c !important; // Ensure the text color is applied
     }
 }
 
