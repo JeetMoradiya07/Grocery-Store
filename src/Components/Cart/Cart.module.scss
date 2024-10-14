@@ -25,4 +25,15 @@
     color: black;
     border-bottom: 1px solid black;
     margin: 20px;
+
+    button{
+        font-size: 16px;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
 }
