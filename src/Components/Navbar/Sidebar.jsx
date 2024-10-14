@@ -1,8 +1,8 @@
-import {motion} from "framer-motion";
-import {NavLink} from "react-router-dom";
+import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
-import {FaUserCircle} from "react-icons/fa";
-import {IoClose} from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 
 const sidebarVariants = {
     open: {
@@ -29,18 +29,18 @@ const pfpVariants = {
         right: "50%",
         transform: "translateX(50%)",
         zoom: 2,
-        transition: {type: "spring", stiffness: 100},
+        transition: { type: "spring", stiffness: 100 },
     },
     closed: {
         top: "30px", // Default position when closed
         right: "50px",
         transform: "translateX(0)",
         zoom: 1,
-        transition: {type: "spring", stiffness: 100},
+        transition: { type: "spring", stiffness: 100 },
     },
 };
 
-const Sidebar = ({isOpen, onClose, onClick}) => {
+const Sidebar = ({ isOpen, onClose, onClick }) => {
     const stopPropagation = (e) => {
         e.stopPropagation();
     };
@@ -67,10 +67,15 @@ const Sidebar = ({isOpen, onClose, onClick}) => {
                         <IoClose />
                     </button>
                 )}
-                <ul>
-                    <li>
-                        <NavLink to="/login" onClick={onClose} className={({isActive}) => `${isActive ? styles.active : ""} ${styles.loginButton}`}>
+                <ul className={styles.menu_items}>
+                    <li className={styles.menu_item}>
+                        <NavLink to="/login" onClick={onClose} className={({ isActive }) => `${isActive ? styles.active : ""} ${styles.loginButton}`}>
                             Login
+                        </NavLink>
+                    </li>
+                    <li className={styles.menu_item}>
+                        <NavLink to="/cart" onClick={onClose} className={({ isActive }) => `${isActive ? styles.active : ""} ${styles.loginButton}`}>
+                            Cart
                         </NavLink>
                     </li>
                 </ul>

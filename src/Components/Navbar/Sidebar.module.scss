@@ -32,11 +32,14 @@
     color: black;
 }
 
-ul {
+.menu_items {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-li {
+.menu_item {
     list-style: none;
 }
 

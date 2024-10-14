@@ -1,5 +1,5 @@
-import {useState, useEffect} from "react";
-import {Routes, Route} from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import HomePage from "./pages/HomePage";
 import StorePage from "./pages/StorePage";
@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import Loading from "./Components/UI/Loading";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Login/Register";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -34,6 +35,7 @@ function App() {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
+                <Route path="cart" element={<Cart />} />
             </Route>
         </Routes>
     );
