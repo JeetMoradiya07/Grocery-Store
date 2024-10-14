@@ -1,0 +1,16 @@
+.cart_wrapper {
+    width: 100%;
+    position: relative;
+    top: 0px;
+    right: 0px;
+    height: 100vh;
+
+    .Cart {
+        width: 40%;
+        background: #ffffff;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100vh;
+    }
+}
