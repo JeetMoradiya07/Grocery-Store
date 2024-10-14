@@ -3,6 +3,17 @@
     min-height: calc(100vh - 20px);
     justify-content: center;
     align-items: center;
+    font-family: $Fredericka;
+
+
+
+    h1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+
 
     .Form {
         border: 3px solid $p-bcg;
@@ -12,17 +23,13 @@
         flex-direction: column;
         border-radius: 10px;
         padding: 20px;
-        box-shadow: 0 0 20px 10px $p-bcg;
-        
-        &:focus-within{
-            box-shadow: 0 0 30px 1px $p-c;
+        box-shadow: 0 0 30px 1px $p-c;
 
-        }
 
         .button {
             border-radius: 3px;
             margin-top: 7px;
-            border: 1px solid $l-border;
+            // border: 1px solid $l-border;
             padding: 7px 17px;
             background: $radial-bcg; // Base background color
             color: $d-c;
@@ -31,6 +38,7 @@
             &:hover,
             &:active {
                 background: $radial-bcg-hover; // Change this color on hover
+                cursor: pointer;
             }
         }
 
@@ -40,7 +48,8 @@
         }
 
         .button2 {
-            border-radius: 8px;
+            border-radius: 15px;
+            font-family: $Fredericka;
             margin-top: 7px;
             padding: 11px 17px;
             background: $l-bcg; // Base background color
@@ -50,6 +59,7 @@
             &:hover,
             &:active {
                 box-shadow: 0 0 10px 1px $d-c;
+                cursor: pointer;
             }
         }
     }
