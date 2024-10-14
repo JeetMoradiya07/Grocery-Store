@@ -29,14 +29,12 @@ const pfpVariants = {
         right: "50%",
         transform: "translateX(50%)",
         zoom: 3,
-        transition: {type: "spring",damping: 10, stiffness: 150},
     },
     closed: {
         top: "25px", // Default position when closed
         right: "50px",
         transform: "translateX(0)",
         zoom: 1,
-        transition: {type: "spring",damping: 10, stiffness: 150},
     },
 };
 
