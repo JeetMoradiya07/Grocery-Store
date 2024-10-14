@@ -1,4 +1,4 @@
-@import "./_variables"; // Import variables at the top
+@use "./_variables" as *; // Import variables using @use
 
 * {
     margin: 0;

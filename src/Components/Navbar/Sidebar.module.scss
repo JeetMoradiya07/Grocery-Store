@@ -2,13 +2,21 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 350px;
+    width: 25%;
     padding: 150px 10px 20px 10px;
     height: 100vh;
     background-color: #fff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 100;
     overflow: hidden;
+
+    ul {
+        padding: 20px;
+    }
+
+    li {
+        list-style: none;
+    }
 }
 
 .overlay {
@@ -30,25 +38,20 @@
     cursor: pointer;
     font-size: 32px;
     color: black;
+
+    &:hover,
+    &:active {
+        font-weight: 900;
+    }
 }
 
-.menu_items {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.menu_item {
-    list-style: none;
-}
-
-.loginButton {
+.Button {
     padding: 10px 20px;
     background-color: #0055ff;
     color: #fff;
     text-align: center;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .pfp {
@@ -58,4 +61,5 @@
     top: 30px;
     right: 50%;
     transform: translateX(50%);
+    transition: all 0.1s;
 }
