@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import Layout from "./layouts/Layout";
 import HomePage from "./pages/HomePage";
 import StorePage from "./pages/StorePage";
@@ -9,7 +8,6 @@ import Register from "./Components/Login/Register";
 import Cart from "./Components/Cart/Cart";
 
 function App() {
-
     return (
         <Routes>
             <Route path="/" element={<Layout />}>

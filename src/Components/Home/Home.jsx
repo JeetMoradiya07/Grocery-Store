@@ -17,7 +17,7 @@ export default function Home() {
 
     return (
         <div className={styles.Home}>
-            <div className={styles.intro_section} style={{backgroundPositionY: `${scrollY * -0.20}px`}}></div>
+            <div className={styles.intro_section} style={{backgroundPositionY: `${scrollY * -0.2}px`}}></div>
         </div>
     );
 }
