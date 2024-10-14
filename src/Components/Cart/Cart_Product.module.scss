@@ -1,0 +1,30 @@
+.product_detail {
+    display: flex;
+    // justify-content: space-evenly;
+}
+
+.product_name {
+    display: flex;
+    flex-direction: column;
+}
+.product_detail {
+    color: black;
+}
+.product_image {
+    height: 150px;
+    width: auto;
+}
+.product_data {
+    display: flex;
+    flex-direction: row;
+}
+
+.product_quantity {
+    display: flex;
+}
+.product_name2 {
+    display: flex;
+}
+.product_detail {
+    margin: 20px;
+}

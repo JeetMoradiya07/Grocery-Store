@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./Cart.module.scss";
-import {IoClose} from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
+import Cart_Product from "./Cart_Product";
 
-export default function Cart({onClose}) {
+export default function Cart({ onClose }) {
     return (
         <>
             <div className={styles.overlay} onClick={onClose} /> {/* Overlay that closes the cart */}
@@ -12,8 +13,10 @@ export default function Cart({onClose}) {
                 </button>
 
                 <div className={styles.nev}>
-                    <h2>Your Cart</h2>
+                    <h2>Cart</h2>
+                    <a href="">Close</a>
                 </div>
+                <Cart_Product/>
             </div>
         </>
     );
