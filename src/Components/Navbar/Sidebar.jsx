@@ -40,7 +40,7 @@ const pfpVariants = {
 };
 
 const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart}) => {
-    const [userName, setuserName] = useState("Fuck Your Name");
+    const [userName, setuserName] = useState("Your Name");
 
     const stopPropagation = (e) => {
         e.stopPropagation();
