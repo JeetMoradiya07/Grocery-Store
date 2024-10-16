@@ -1,14 +1,16 @@
 import {useState} from "react";
 import {NavLink} from "react-router-dom";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Slidebar/Sidebar";
 import styles from "./Navbar.module.scss";
 import logo from "/src/assets/Images/WDP.png";
-import {FaUserCircle} from "react-icons/fa"; 
-import Cart from "../Cart/Cart";
+import {FaUserCircle} from "react-icons/fa";
+import Cart from "../Slidebar/Cart/Cart";
+import Profile from "../Slidebar/Profile/Profile"; // Import Profile component
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [cartIsOpen, setCartIsOpen] = useState(false); 
+    const [cartIsOpen, setCartIsOpen] = useState(false);
+    const [profileIsOpen, setProfileIsOpen] = useState(false);
 
     const openSidebar = () => {
         setIsSidebarOpen(true);
@@ -21,6 +23,11 @@ const Navbar = () => {
     const toggleCart = () => {
         setIsSidebarOpen(false);
         setCartIsOpen((prev) => !prev);
+    };
+
+    const toggleProfile = () => {
+        setIsSidebarOpen(false);
+        setProfileIsOpen((prev) => !prev);
     };
 
     return (
@@ -50,8 +57,17 @@ const Navbar = () => {
                     <FaUserCircle size={30} />
                 </li>
             </ul>
-            <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} onClick={openSidebar} cartIsOpen={cartIsOpen} toggleCart={toggleCart} />
+            <Sidebar
+                isOpen={isSidebarOpen}
+                onClose={closeSidebar}
+                onClick={openSidebar}
+                cartIsOpen={cartIsOpen}
+                toggleCart={toggleCart}
+                profileIsOpen={profileIsOpen}
+                toggleProfile={toggleProfile}
+            />
             {cartIsOpen && <Cart onClose={toggleCart} />}
+            {profileIsOpen && <Profile onClose={toggleProfile} />} {/* Render Profile when profileIsOpen is true */}
         </nav>
     );
 };
