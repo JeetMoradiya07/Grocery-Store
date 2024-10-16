@@ -20,6 +20,16 @@
     z-index: 500; // Below the cart, but above other content
 }
 
+label{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: black;
+  
+}
+
 .profile_view {
     display: flex;
     flex-direction: column;
