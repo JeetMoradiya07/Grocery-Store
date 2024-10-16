@@ -6,6 +6,27 @@
 .product_name {
     display: flex;
     flex-direction: column;
+    font-size: medium;
+    h2 {
+        font-weight: 300;
+    }
+    h4 {
+        font-weight: 300;
+    }
+}
+.product_remove {
+    button {
+        border: none;
+        background: none;
+        font-family: $Lora;
+        font-size: 17px;
+        
+    }
+    button:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      
+    }
 }
 .product_detail {
     color: black;
