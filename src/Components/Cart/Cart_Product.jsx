@@ -18,7 +18,9 @@ export default function Cart_Product() {
                             <h4>Size - Medium</h4>
                         </div>
                         <div className={[`${styles.product_remove}`]}>
-                            <a href="">Remove</a>
+                            <button>
+                                <h4>Remove</h4>
+                            </button>
                         </div>
                     </div>
                     <div className={[`${styles.product_name2}`]}>
