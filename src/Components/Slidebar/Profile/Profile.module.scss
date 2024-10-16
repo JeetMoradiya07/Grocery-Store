@@ -9,7 +9,7 @@
 }
 
 .Profile {
-    width: 40%;
+    width: 400px;
     background: #ffffff;
     position: absolute;
     top: 0;
@@ -18,4 +18,56 @@
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); // Optional shadow
     transition: transform 0.3s ease; // Optional transition
     z-index: 500; // Below the cart, but above other content
+}
+
+.profile_view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin-top: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profile_detail {
+    margin-bottom: 15px;
+    color: black;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.email {
+    font-size: 14px;
+    // color: #666;
+}
+
+.edit_button {
+    display: flex;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #555;
+    }
 }
