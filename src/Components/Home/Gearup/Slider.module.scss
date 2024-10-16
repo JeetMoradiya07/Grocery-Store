@@ -1,0 +1,44 @@
+.sliderContainer {
+    position: relative; // Position relative for absolute positioning of buttons
+    display: flex; // Use flexbox to position items
+    align-items: center; // Center items vertically
+}
+
+.swiper {
+    width: 90%; // Ensure the Swiper takes full width
+}
+
+.prevButton,
+.nextButton {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: $p-c;
+    top: 50%; // Center vertically
+    border: 2px solid $p-c; // Remove border
+    border-radius: 50%; // Round button shape
+    cursor: pointer; // Change cursor to pointer on hover
+    z-index: 1000; // Ensure buttons are on top of the Swiper
+    opacity: 0.9;
+    transition: all 0.1s ease-in-out;
+}
+
+.prevButton {
+    left: 5px; // Position to the left outside the slider
+    &:active {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+}
+
+.nextButton {
+    right: 5px; // Position to the right outside the slider
+    &:active {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+}

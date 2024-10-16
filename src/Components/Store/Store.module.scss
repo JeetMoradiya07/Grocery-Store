@@ -1,0 +1,97 @@
+.Store {
+    min-height: calc(100vh - 20px);
+    padding-top: 80px;
+    position: relative;
+    display: flex;
+
+    .sideBar {
+        background: $s-c;
+        position: fixed;
+        width: 300px;
+        height: 100%;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        h2 {
+            font-size: 20px;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            border-bottom: 0.7px solid $p-c;
+        }
+        .price {
+        }
+        .sortData {
+            margin-bottom: 20px; // Add some space below the select element
+
+            select {
+                width: 100%;
+                padding: 10px;
+                background: transparent; // Use a transparent background
+                color: $d-c; // Text color from your variables
+                border: 1px solid $p-c; // Border color from your variables
+                border-radius: 4px; // Rounded corners
+                font-size: 16px; // Font size for readability
+                cursor: pointer; // Change cursor on hover
+
+                // Styles for the options within the select dropdown
+                option {
+                    background: #000000; // Transparent background for options
+                    // Reset select element styles to avoid browser defaults
+
+                    color: $d-c; // Use the same text color for options
+                    padding: 10px; // Optional padding for options
+                }
+
+                // Optional: Add hover effects for the select box
+                &:hover {
+                    border-color: darken($p-c, 10%); // Darken the border on hover
+                }
+            }
+        }
+    }
+
+    .products {
+        width: 100%;
+        padding: 30px 20px;
+        padding-left: 320px;
+        float: right;
+
+        .heading {
+            h1 {
+                font-family: $Bitter;
+                font-size: 46px;
+                font-weight: 500;
+                margin-bottom: 30px;
+                margin-left: 20px;
+            }
+            h2 {
+                font-family: $Bitter;
+                font-size: 24px;
+                font-weight: 500;
+                margin-bottom: 25px;
+                margin-left: 20px;
+            }
+        }
+
+        .productItems {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+
+            .item {
+                flex: 0 0 calc(30%);
+                margin-bottom: 60px;
+
+                @media (max-width: 1200px) {
+                    flex: 0 0 calc(45%);
+                }
+
+                @media (max-width: 768px) {
+                    flex: 0 0 calc(100%);
+                }
+            }
+        }
+    }
+}

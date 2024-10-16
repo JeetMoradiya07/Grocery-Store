@@ -2,7 +2,7 @@ import styles from "./Home.module.scss";
 import introImg1 from "@/assets/Images/introImg1.png";
 import introImg2 from "@/assets/Images/introImg2.png";
 import introImg3 from "@/assets/Images/introImg3.png";
-import GearupSection from "./GearupSection";
+import GearupSection from "./Gearup/GearupSection";
 
 export default function Home() {
     return (
