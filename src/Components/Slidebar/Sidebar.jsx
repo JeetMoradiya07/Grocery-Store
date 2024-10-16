@@ -39,7 +39,7 @@ const pfpVariants = {
     },
 };
 
-const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart}) => {
+const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart,profileIsOpen,toggleProfile}) => {
     const [userName, setuserName] = useState("Your Name");
 
     const stopPropagation = (e) => {
@@ -82,8 +82,12 @@ const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart}) => {
                     <li className={styles.menu_item}>
                         <button className={styles.Button} onClick={toggleCart}>
                             Cart
-                        </button>{" "}
-                        {/* Toggle cart on click */}
+                        </button>
+                    </li>
+                    <li className={styles.menu_item}>
+                        <button className={styles.Button} onClick={toggleProfile}>
+                            View Profile
+                        </button>
                     </li>
                 </ul>
             </motion.div>

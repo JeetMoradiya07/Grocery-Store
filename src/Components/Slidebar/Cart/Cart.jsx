@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Cart.module.scss";
 import Cart_Product from "./Cart_Product";
 

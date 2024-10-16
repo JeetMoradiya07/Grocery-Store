@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./Cart_Product.module.scss";
-// import pexels from "./assets/pexels-karolina-grabowska-5650016.jpg";
-import fernando from "../../assets/Images/fernando-andrade-potCPE-Cw8A-unsplash.jpg";
+// import pexels from "@/assets/pexels-karolina-grabowska-5650016.jpg";
+import fernando from "@/assets/Images/fernando-andrade-potCPE-Cw8A-unsplash.jpg";
 import { IoIosAdd } from "react-icons/io";
 import { GrFormSubtract } from "react-icons/gr";
 export default function Cart_Product() {

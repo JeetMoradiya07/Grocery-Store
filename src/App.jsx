@@ -5,7 +5,6 @@ import StorePage from "./pages/StorePage";
 import AboutPage from "./pages/AboutPage";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Login/Register";
-import Cart from "./Components/Cart/Cart";
 
 function App() {
     return (
@@ -16,7 +15,6 @@ function App() {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
-                <Route path="cart" element={<Cart />} />
             </Route>
         </Routes>
     );
