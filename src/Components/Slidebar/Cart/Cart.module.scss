@@ -10,6 +10,11 @@
 
 .Cart {
     width: 40%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: $Lora;
     background: #ffffff;
     position: absolute;
     top: 0;
@@ -25,15 +30,59 @@
     color: black;
     border-bottom: 1px solid black;
     margin: 20px;
+    h2 {
+        font-weight: 300;
+        font-size: larger;
+        font-family: $Lora;
+    }
 
-    button{
-        font-size: 16px;
+    button {
+        // font-size: 16px;
+        font-weight: 300;
+        font-family: $Lora;
+        font-size: larger;
         background: transparent;
         border: none;
         outline: none;
         cursor: pointer;
-        &:hover{
+        &:hover {
             text-decoration: underline;
         }
+    }
+}
+.payment {
+    display: flex;
+    flex-direction: column;
+}
+.delivery_checkout {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+    font-size: medium;
+}
+.delivery_date {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: 300;
+    font-size: medium;
+}
+.delivery_payment {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+    font-size: medium;
+}
+.pay {
+    display: flex;
+    display: flex;
+    justify-content: center;
+
+    button {
+        width: 100%;
+        color: #ffffff;
+        background-color: black;
+        font-weight: 300;
+        font-size: medium;
+        height: 40px;
     }
 }
