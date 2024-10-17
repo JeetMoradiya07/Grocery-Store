@@ -10,6 +10,8 @@
 
 .Cart {
     width: 40%;
+    // margin: 10%;
+    padding: 20px;
     color: black;
     display: flex;
     flex-direction: column;
@@ -29,7 +31,7 @@
     justify-content: space-between;
     color: black;
     border-bottom: 1px solid black;
-    margin: 20px;
+    // margin: 20px;
     h2 {
         font-weight: 300;
         font-size: larger;
@@ -53,6 +55,7 @@
 .payment {
     display: flex;
     flex-direction: column;
+    gap: 7px ;
 }
 .delivery_checkout {
     display: flex;

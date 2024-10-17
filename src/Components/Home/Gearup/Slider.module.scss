@@ -22,7 +22,7 @@
     border: 2px solid $p-c; // Remove border
     border-radius: 50%; // Round button shape
     cursor: pointer; // Change cursor to pointer on hover
-    z-index: 1000; // Ensure buttons are on top of the Swiper
+    z-index: 100; // Ensure buttons are on top of the Swiper
     opacity: 0.9;
     transition: all 0.1s ease-in-out;
 }
