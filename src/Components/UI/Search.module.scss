@@ -1,0 +1,21 @@
+/* Search.module.scss */
+.TextField {
+    margin: 8px 0; /* Margin around the TextField */
+
+    input {
+        padding: 10px; /* Padding inside the input field */
+        width: 100%; /* Full width */
+        transition: border-color 0.3s ease; /* Smooth border color transition */
+        border-bottom: 1px solid $p-c; /* Change border color when focused */
+        color: $d-c;
+
+        &:focus {
+            border-color: $p-c; /* Change border color when focused */
+            outline: none; /* Remove outline */
+        }
+    }
+
+    label {
+        color: $p-c; /* Label color */
+    }
+}

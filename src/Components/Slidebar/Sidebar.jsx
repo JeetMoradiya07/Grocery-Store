@@ -39,7 +39,7 @@ const pfpVariants = {
     },
 };
 
-const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart,profileIsOpen,toggleProfile}) => {
+const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart, profileIsOpen, toggleProfile}) => {
     const [userName, setuserName] = useState("Your Name");
 
     const stopPropagation = (e) => {
@@ -75,8 +75,8 @@ const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart,profileIsOpen
                 )}
                 <ul className={styles.menu_items}>
                     <li className={styles.menu_item}>
-                        <NavLink to="/login" onClick={onClose} className={styles.Button}>
-                            Login
+                        <NavLink to="/login" onClick={onClose}>
+                            <button className={styles.Button}>Login</button>
                         </NavLink>
                     </li>
                     <li className={styles.menu_item}>
@@ -88,6 +88,11 @@ const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart,profileIsOpen
                         <button className={styles.Button} onClick={toggleProfile}>
                             View Profile
                         </button>
+                    </li>
+                    <li className={styles.menu_item}>
+                        <NavLink to="/setting" onClick={onClose}>
+                            <button className={styles.Button}>Setting</button>
+                        </NavLink>
                     </li>
                 </ul>
             </motion.div>
