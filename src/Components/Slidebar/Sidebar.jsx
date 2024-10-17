@@ -89,11 +89,7 @@ const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart, profileIsOpe
                             View Profile
                         </button>
                     </li>
-                    <li className={styles.menu_item}>
-                        <NavLink to="/setting" onClick={onClose}>
-                            <button className={styles.Button}>Setting</button>
-                        </NavLink>
-                    </li>
+                   
                 </ul>
             </motion.div>
         </>

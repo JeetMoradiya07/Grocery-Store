@@ -1,21 +1,43 @@
-/* Search.module.scss */
+.searchContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
 .TextField {
-    margin: 8px 0; /* Margin around the TextField */
+    margin: 8px 0;
+    flex-grow: 1;
+    position: relative;
 
     input {
-        padding: 10px; /* Padding inside the input field */
-        width: 100%; /* Full width */
-        transition: border-color 0.3s ease; /* Smooth border color transition */
-        border-bottom: 1px solid $p-c; /* Change border color when focused */
+        padding: 10px;
+        padding-right: 20px;
+        width: 100%;
+        transition: border-color 0.3s ease;
+        border-bottom: 1px solid $p-c;
         color: $d-c;
 
         &:focus {
-            border-color: $p-c; /* Change border color when focused */
-            outline: none; /* Remove outline */
+            border-color: $p-c;
+            outline: none;
         }
     }
 
     label {
-        color: $p-c; /* Label color */
+        color: $p-c;
     }
+}
+
+.iconContainer {
+    position: absolute;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 24px;
+    color: $p-c;
 }
