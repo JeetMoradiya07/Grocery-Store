@@ -3,6 +3,8 @@ import introImg1 from "@/assets/Images/introImg1.png";
 import introImg2 from "@/assets/Images/introImg2.png";
 import introImg3 from "@/assets/Images/introImg3.png";
 import GearupSection from "./Gearup/GearupSection";
+import {NavLink} from "react-router-dom";
+import Parallax from "./Parallax/Parallax";
 
 export default function Home() {
     return (
@@ -21,10 +23,13 @@ export default function Home() {
                     <h3>This Week&apos;s Deals </h3>
                     <h1>10%</h1>
                     <h2>Off In All Games</h2>
-                    <button>Shop Now</button>
+                    <NavLink to={"store"}>
+                        <button>Shop Now</button>
+                    </NavLink>
                 </div>
             </div>
             <GearupSection />
+            <Parallax />
         </div>
     );
 }

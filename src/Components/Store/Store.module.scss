@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .Store {
     min-height: calc(100vh - 20px);
     padding-top: 80px;
@@ -13,6 +15,7 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
+        z-index: 7;
 
         h2 {
             font-size: 20px;
@@ -46,17 +49,23 @@
 
                 // Optional: Add hover effects for the select box
                 &:hover {
-                    border-color: darken($p-c, 10%); // Darken the border on hover
+                    border-color: color.adjust($p-c, $lightness: -10%);
                 }
             }
         }
     }
 
     .products {
+        position: relative;
         width: 100%;
         padding: 30px 20px;
         padding-left: 320px;
         float: right;
+
+        .search {
+            position: absolute;
+            right: 30px;
+        }
 
         .heading {
             h1 {

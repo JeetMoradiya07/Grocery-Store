@@ -37,7 +37,6 @@
             left: 75%;
         }
         .introSell {
-
             color: $d-c;
             background: $radial-bcg;
             transform: translateX(-50%);
@@ -52,32 +51,32 @@
             justify-content: center;
             gap: 7px;
             flex-direction: column;
-            
+
             h3 {
                 font-size: 24px;
                 font-family: $Fredericka;
                 font-weight: 500;
             }
-            
+
             h1 {
                 font-size: 100px;
                 font-family: $Lora;
             }
-            
+
             h2 {
                 font-size: 32px;
                 font-family: $Fredericka;
                 font-weight: 500;
             }
 
-            button{
+            button {
                 background: $d-c;
                 font-size: 18px;
                 font-family: $Lora;
                 font-weight: 900;
                 border-radius: 25px;
                 padding: 7px 28px;
-            
+                cursor: pointer;
             }
         }
     }
