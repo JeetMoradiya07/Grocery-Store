@@ -4,8 +4,8 @@ import img from "../../../assets/Images/parallax.png";
 
 export default function Parallax({jsx}) {
     const [scrollY, setScrollY] = useState(0);
-    const [inView, setInView] = useState(false); // Track if the section is in view
-    const parallaxRef = useRef(null); // Ref for the parallax section
+    const [inView, setInView] = useState(false); 
+    const parallaxRef = useRef(null); 
 
     // Handle scroll event
     const handleScroll = () => {
@@ -17,30 +17,30 @@ export default function Parallax({jsx}) {
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setInView(entry.isIntersecting); // Set inView based on intersection
+                setInView(entry.isIntersecting); 
             },
-            {threshold: 0.1} // Trigger when 10% of the section is visible
+            {threshold: 0.1} 
         );
 
         if (parallaxRef.current) {
-            observer.observe(parallaxRef.current); // Observe the parallax section
+            observer.observe(parallaxRef.current);
         }
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
-            observer.disconnect(); // Clean up the observer
+            observer.disconnect(); 
         };
     }, []);
 
     // Calculate styles for images based on scroll position and inView state
     const imgStyles = {
         transform: inView
-            ? `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.002})` // Adjust scale factor for smoother zoom
-            : "translateY(0) scale(1)", // Reset when out of view
+            ? `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.002})`
+            : "translateY(0) scale(1)", 
         opacity: inView
-            ? `${Math.max(1 - scrollY * 0.005, 0)}` // Fade out more gradually
-            : 1, // Keep opacity full when out of view
-        transition: "transform 0.2s ease-out, opacity 0.2s ease-out", // Smooth transition effects
+            ? `${Math.max(1 - scrollY * 0.005, 0)}` 
+            : 1, 
+        transition: "transform 0.2s ease-out, opacity 0.2s ease-out", 
     };
 
     return (

@@ -8,13 +8,13 @@ import { MdDelete } from "react-icons/md";
 export default function Cart_Product({ onUpdateQuantity, onRemove, index, initialQuantity = 1 }) {
     // Set up state for the product quantity
     const [number, setNumber] = useState(initialQuantity);
-    const basePrice = 399; // Base price of the product
+    const basePrice = 399; 
 
     // Increment quantity
     const increment = () => {
         setNumber((prevNumber) => {
             const newQuantity = prevNumber + 1;
-            onUpdateQuantity(index, newQuantity); // Notify parent of the quantity change
+            onUpdateQuantity(index, newQuantity); 
             return newQuantity;
         });
     };
@@ -24,7 +24,7 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
         if (number > 1) {
             setNumber((prevNumber) => {
                 const newQuantity = prevNumber - 1;
-                onUpdateQuantity(index, newQuantity); // Notify parent of the quantity change
+                onUpdateQuantity(index, newQuantity); 
                 return newQuantity;
             });
         }
@@ -32,10 +32,9 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
 
     // Remove the product
     const removeProduct = () => {
-        onRemove(index); // Notify parent to remove this product
+        onRemove(index); 
     };
 
-    // Calculate total price based on quantity
     const totalPrice = basePrice * number;
 
     return (
@@ -53,19 +52,16 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
 
                 <div className={styles.product_name2}>
                     <div className={styles.product_quantity}>
-                        {/* Conditionally render delete or decrement button based on quantity */}
                         <div className={styles.product_quantity_subtraction}>
                             {number > 1 ? (
-                                // Show decrement button if quantity is more than 1
                                 <GrFormSubtract onClick={decrement} />
                             ) : (
-                                // Show delete button if quantity is 1
                                 <MdDelete onClick={removeProduct} className={styles.delete_icon} />
                             )}
                         </div>
 
                         <div className={styles.product_quantity_show}>
-                            <h4>{number}</h4> {/* Display dynamic quantity */}
+                            <h4>{number}</h4> 
                         </div>
 
                         {/* Increment button */}
@@ -75,7 +71,7 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
                     </div>
 
                     <div className={styles.product_price}>
-                        <h4>$ {totalPrice}</h4> {/* Display dynamic total price */}
+                        <h4>$ {totalPrice}</h4> 
                     </div>
                 </div>
             </div>

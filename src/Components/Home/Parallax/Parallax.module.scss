@@ -1,20 +1,19 @@
-/* Parallax.module.scss */
 .Parallax {
     position: relative;
     overflow: hidden;
-    height: 100vh; /* Full viewport height for the parallax effect */
+    height: 100vh; 
 }
 
 .parallax {
     position: relative;
-    height: 100%; /* Full height for the parallax container */
+    height: 100%; 
 }
 
 .imageContainer {
     position: absolute;
     top: 0;
-    left: 50%; /* Center the image horizontally */
-    transform: translateX(-50%); /* Adjust for the center */
+    left: 50%; 
+    transform: translateX(-50%); 
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -24,10 +23,10 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: auto; /* Allow width to auto for aspect ratio */
-    height: 100%; /* Fill the height of the container */
-    transform: translate(-50%, -50%); /* Center the image */
+    width: auto; 
+    height: 100%; 
+    transform: translate(-50%, -50%); 
     transition:
         transform 0.2s ease-out,
-        opacity 0.2s ease-out; /* Smooth transitions */
+        opacity 0.2s ease-out; 
 }

@@ -49,7 +49,7 @@ export default function Profile({ onClose }) {
 
   return (
     <>
-      <div className={styles.overlay} onClick={onClose} /> {/* Overlay to close the profile */}
+      <div className={styles.overlay} onClick={onClose} />
       <div className={styles.Profile}>
         <div className={styles.profile_view}>
           {isEditing ? (
