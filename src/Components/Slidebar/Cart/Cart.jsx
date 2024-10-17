@@ -1,19 +1,50 @@
+import React, { useState } from "react";
 import styles from "./Cart.module.scss";
 import Cart_Product from "./Cart_Product";
 
 export default function Cart({ onClose }) {
+    // Step 1: Set up state for managing cart products
+    const [products, setProducts] = useState([
+        { id: 1, quantity: 1, price: 399 },
+        { id: 2, quantity: 1, price: 399 },
+        { id: 3, quantity: 1, price: 399 },
+    ]);
+
+    // Step 2: Handle updating quantity for a product
+    const updateQuantity = (index, newQuantity) => {
+        const updatedProducts = [...products];
+        updatedProducts[index].quantity = newQuantity;
+        setProducts(updatedProducts);
+    };
+
+    // Step 3: Handle removing a product
+    const removeProduct = (index) => {
+        const updatedProducts = products.filter((_, i) => i !== index);
+        setProducts(updatedProducts);
+    };
+
+    // Step 4: Calculate the overall total price for the cart
+    const totalPrice = products.reduce((sum, product) => sum + product.quantity * product.price, 0);
+
     return (
         <>
-            <div className={styles.overlay} onClick={onClose} /> {/* Overlay that closes the cart */}
+            <div className={styles.overlay} onClick={onClose} />
             <div className={styles.Cart}>
                 <div className="">
                     <div className={styles.nev}>
                         <h2>Cart</h2>
                         <button onClick={onClose}>Close</button>
                     </div>
-                    <Cart_Product />
-                    <Cart_Product />
-                    <Cart_Product />
+                    {/* Render Cart_Product components dynamically */}
+                    {products.map((product, index) => (
+                        <Cart_Product
+                            key={product.id}
+                            index={index}
+                            initialQuantity={product.quantity}
+                            onUpdateQuantity={updateQuantity}
+                            onRemove={removeProduct}
+                        />
+                    ))}
                 </div>
                 <div className={styles.payment}>
                     <div className={styles.delivery_checkout}>
@@ -33,7 +64,7 @@ export default function Cart({ onClose }) {
                         </div>
                         <div>
                             <p>
-                                <b>$ 1197</b>
+                                <b>$ {totalPrice}</b> {/* Dynamic total price */}
                             </p>
                         </div>
                     </div>

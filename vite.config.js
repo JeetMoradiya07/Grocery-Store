@@ -1,11 +1,11 @@
 import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path"; // Import path module
-import {fileURLToPath} from "url"; // Import fileURLToPath
-import {dirname} from "path"; // Import dirname
+import path from "path";
+import {fileURLToPath} from "url";
+import {dirname} from "path";
 
-const __filename = fileURLToPath(import.meta.url); // Get the current file path
-const __dirname = dirname(__filename); // Get the directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
     plugins: [react()],
@@ -17,7 +17,9 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: `@use './src/_variables.scss' as *;`, // Use @use instead of @import
+                additionalData: `@use './src/_variables.scss' as *;`,
+                // Suppress SCSS warnings
+                quietDeps: true, // This option suppresses warnings for dependencies
             },
         },
     },
