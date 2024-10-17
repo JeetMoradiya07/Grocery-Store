@@ -9,7 +9,7 @@ export default function Register() {
             <div className={styles.Form}>
                 <h1>Register</h1>
                 <Input label={"Username"} type="text" name="username" placeholder="Username" required />
-                <Input label={"mobile Number"} type="tel" maxLength={10} name="mobile Number" placeholder="Enter Your Mobile Number" required />
+                <Input label={"Mobile Number"} type="tel" maxLength={10} name="mobile Number" placeholder="Enter Your Mobile Number" required />
                 <Input label={"Password"} type="password" name="password" placeholder="Password" required />
                 <Input label={"Confirm Password"} type="password" name="password" placeholder="Confirm Password" required />
                 <Button className={styles.button} type="submit">

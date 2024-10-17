@@ -23,30 +23,27 @@
         .price {
         }
         .sortData {
-            margin-bottom: 20px; // Add some space below the select element
+            margin-bottom: 20px;
 
             select {
                 width: 100%;
                 padding: 10px;
-                background: transparent; // Use a transparent background
-                color: $d-c; // Text color from your variables
-                border: 1px solid $p-c; // Border color from your variables
-                border-radius: 4px; // Rounded corners
-                font-size: 16px; // Font size for readability
-                cursor: pointer; // Change cursor on hover
+                background: transparent; 
+                color: $d-c; 
+                border: 1px solid $p-c; 
+                border-radius: 4px; 
+                font-size: 16px; 
+                cursor: pointer; 
 
-                // Styles for the options within the select dropdown
                 option {
-                    background: #000000; // Transparent background for options
-                    // Reset select element styles to avoid browser defaults
+                    background: #000000; 
 
-                    color: $d-c; // Use the same text color for options
-                    padding: 10px; // Optional padding for options
+                    color: $d-c; 
+                    padding: 10px; 
                 }
 
-                // Optional: Add hover effects for the select box
                 &:hover {
-                    border-color: darken($p-c, 10%); // Darken the border on hover
+                    border-color: darken($p-c, 10%); 
                 }
             }
         }
