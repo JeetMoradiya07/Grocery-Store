@@ -1,4 +1,4 @@
-import Store from "../Components/Store/Store";
+import Store from "../Components/StorePage/Store";
 
 export default function StorePage() {
     return (

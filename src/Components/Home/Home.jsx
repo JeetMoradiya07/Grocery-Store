@@ -24,12 +24,23 @@ export default function Home() {
                     <h1>10%</h1>
                     <h2>Off In All Games</h2>
                     <NavLink to={"store"}>
-                        <button>Shop Now</button>
+                        <button className="button1">Shop Now</button>
                     </NavLink>
                 </div>
             </div>
             <GearupSection />
-            <Parallax />
+            <Parallax
+                id="parallax1"
+                jsx={
+                    <>
+                        <h1>SPEND LESS, PLAY MORE</h1>
+                        <h4>Save 20% when you spend more than $125</h4>
+                        <NavLink to={"store"}>
+                            <button className="button1">Shop Now</button>
+                        </NavLink>
+                    </>
+                }
+            />
         </div>
     );
 }

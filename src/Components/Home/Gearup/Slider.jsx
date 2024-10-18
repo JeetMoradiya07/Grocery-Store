@@ -2,7 +2,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css"; // Import Swiper core styles
 import "swiper/css/navigation"; // Import navigation styles
 import {Navigation} from "swiper/modules";
-import Item from "../../Store/Item";
+import Item from "../../StorePage/Item";
 import styles from "./Slider.module.scss";
 import {useRef, useState, useEffect} from "react";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
