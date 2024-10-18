@@ -6,58 +6,50 @@ import PriceSlider from "./PriceSlider";
 import Search from "../UI/Search";
 
 export default function Store() {
-    const [products, setProducts] = useState([]); 
-    const [filteredProducts, setFilteredProducts] = useState([]); 
-    const [priceRange, setPriceRange] = useState([0, 1000]); 
-    const [maxPrice, setMaxPrice] = useState(1000); 
-    const [sortOption, setSortOption] = useState(""); 
-    const [searchQuery, setSearchQuery] = useState(""); 
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [priceRange, setPriceRange] = useState([0, 1000]);
+    const [maxPrice, setMaxPrice] = useState(1000);
+    const [sortOption, setSortOption] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
-    
     const handlePriceChange = (event, newValue) => {
         setPriceRange(newValue);
     };
 
-    
     const handleSortChange = (event) => {
-        setSortOption(event.target.value); 
+        setSortOption(event.target.value);
     };
 
-    
     const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value.toLowerCase()); 
+        setSearchQuery(event.target.value.toLowerCase());
     };
 
-    
     useEffect(() => {
-        fetch("https:
+        fetch("https://fakestoreapi.com/products")
             .then((res) => res.json())
             .then((data) => {
-                setProducts(data); 
-                setFilteredProducts(data); 
+                setProducts(data);
+                setFilteredProducts(data);
 
-                
                 const max = Math.round(Math.max(...data.map((product) => product.price)));
                 setMaxPrice(max);
-                setPriceRange([0, max]); 
+                setPriceRange([0, max]);
             })
             .catch((error) => console.error("Error fetching products:", error));
     }, []);
 
-    
     useEffect(() => {
         let filtered = products.filter((product) => {
-            
             const inPriceRange = product.price >= priceRange[0] && product.price <= priceRange[1];
-            
+
             const matchesSearch = product.title.toLowerCase().includes(searchQuery);
-            return inPriceRange && matchesSearch; 
+            return inPriceRange && matchesSearch;
         });
 
-        
         switch (sortOption) {
             case "newest":
-                filtered = [...filtered].sort((a, b) => b.id - a.id); 
+                filtered = [...filtered].sort((a, b) => b.id - a.id);
                 break;
             case "lowToHigh":
                 filtered = [...filtered].sort((a, b) => a.price - b.price);
@@ -75,8 +67,8 @@ export default function Store() {
                 break;
         }
 
-        setFilteredProducts(filtered); 
-    }, [priceRange, products, sortOption, searchQuery]); 
+        setFilteredProducts(filtered);
+    }, [priceRange, products, sortOption, searchQuery]);
 
     return (
         <div className={styles.Store}>
