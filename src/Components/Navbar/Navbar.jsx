@@ -5,7 +5,7 @@ import styles from "./Navbar.module.scss";
 import logo from "/src/assets/Images/WDP.png";
 import {FaUserCircle} from "react-icons/fa";
 import Cart from "../Slidebar/Cart/Cart";
-import Profile from "../Slidebar/Profile/Profile"; // Import Profile component
+import Profile from "../Slidebar/Profile/Profile"; 
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);

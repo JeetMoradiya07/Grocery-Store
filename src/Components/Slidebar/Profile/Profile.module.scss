@@ -1,11 +1,11 @@
 .overlay {
-  position: fixed; // Use fixed to cover the entire viewport
+  position: fixed; 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); // Semi-transparent background
-  z-index: 400; // Below the cart, but above other content
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 400; 
 }
 
 .Profile {
@@ -15,9 +15,9 @@
   top: 0;
   right: 0;
   height: 100vh;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); // Optional shadow
-  transition: transform 0.3s ease; // Optional transition
-  z-index: 500; // Below the cart, but above other content
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); 
+  transition: transform 0.3s ease; 
+  z-index: 500; 
 
   label {
     display: flex;

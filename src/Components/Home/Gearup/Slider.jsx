@@ -1,6 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import "swiper/css"; // Import Swiper core styles
-import "swiper/css/navigation"; // Import navigation styles
+import "swiper/css"; 
+import "swiper/css/navigation"; 
 import {Navigation} from "swiper/modules";
 import Item from "../../StorePage/Item";
 import styles from "./Slider.module.scss";
@@ -9,10 +9,10 @@ import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
 
 export default function Slider() {
-    const swiperRef = useRef(null); // Create a ref for the Swiper
-    const [isBeginning, setIsBeginning] = useState(true); // Initialize to true
-    const [isEnd, setIsEnd] = useState(false); // State to track if it's the last slide
-    const [products, setProducts] = useState([]); // State to hold API data
+    const swiperRef = useRef(null);
+    const [isBeginning, setIsBeginning] = useState(true); 
+    const [isEnd, setIsEnd] = useState(false); 
+    const [products, setProducts] = useState([]); 
 
     // Fetch product data from API
     useEffect(() => {
@@ -22,11 +22,11 @@ export default function Slider() {
                 setProducts(data); // Set the fetched data to state
             })
             .catch((error) => console.error("Error fetching products:", error));
-    }, []); // Run this effect once after the component mounts
+    }, []); 
 
     const handleSlideChange = (swiper) => {
-        setIsBeginning(swiper.isBeginning); // Update isBeginning state
-        setIsEnd(swiper.isEnd); // Update isEnd state
+        setIsBeginning(swiper.isBeginning); 
+        setIsEnd(swiper.isEnd); 
     };
 
     return (
@@ -36,21 +36,21 @@ export default function Slider() {
                 <button
                     className={styles.prevButton}
                     onClick={() => swiperRef.current.swiper.slidePrev()}
-                    style={{opacity: isBeginning ? 0.5 : 1}} // Use isBeginning from state
-                    disabled={isBeginning} // Disable button if at the beginning
+                    style={{opacity: isBeginning ? 0.5 : 1}} 
+                    disabled={isBeginning} 
                 >
                     <FaArrowLeft size={20} />
                 </button>
 
                 {/* Swiper with API Data */}
                 <Swiper
-                    ref={swiperRef} // Attach the ref to the Swiper
-                    spaceBetween={30} // Set space between slides
+                    ref={swiperRef} 
+                    spaceBetween={30} 
                     slidesPerView={4}
-                    navigation={false} // Disable default navigation
+                    navigation={false}
                     modules={[Navigation]}
                     className={styles.swiper}
-                    onSlideChange={handleSlideChange} // Add slide change event handler
+                    onSlideChange={handleSlideChange}
                 >
                     {/* Dynamically render SwiperSlide based on API data */}
                     {products.map((product) => (
@@ -66,8 +66,8 @@ export default function Slider() {
                 <button
                     className={styles.nextButton}
                     onClick={() => swiperRef.current.swiper.slideNext()}
-                    style={{opacity: isEnd ? 0.5 : 1}} // Set opacity based on isEnd state
-                    disabled={isEnd} // Disable button if at the end
+                    style={{opacity: isEnd ? 0.5 : 1}} 
+                    disabled={isEnd} 
                 >
                     <FaArrowRight size={20} />
                 </button>

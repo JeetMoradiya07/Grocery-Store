@@ -13,7 +13,7 @@ export default function PriceSlider({value, handleChange}) {
                 valueLabelDisplay="auto"
                 min={0}
                 max={1000}
-                step={10} // Optional: defines the step increment
+                step={10} 
             />
             <Typography className={styles.Typography}>
                 <div>${value[0]}</div>

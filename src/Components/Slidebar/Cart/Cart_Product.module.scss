@@ -70,7 +70,7 @@
 .product_quantity {
     display: flex;
     border: 1px solid gray;
-    width: 22%;
+    width: 20%;
     justify-content: space-around;
     align-items: stretch;
 }
@@ -119,5 +119,5 @@
 .delete_icon,
 .product_quantity_subtraction svg {
     cursor: pointer;
-    margin: 0 8px;
+    width: 13px;
 }

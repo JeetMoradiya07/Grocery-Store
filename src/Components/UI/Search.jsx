@@ -5,13 +5,13 @@ import {FiSearch} from "react-icons/fi";
 export default function Search({onChange}) {
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
-            onChange(event); // Trigger onChange when Enter is pressed
+            onChange(event); 
         }
     };
 
     const handleIconClick = () => {
-        // Trigger onChange or perform any specific action when the icon is clicked
-        onChange({target: {value: ""}}); // Example action: clear the search input
+        
+        onChange({target: {value: ""}}); 
     };
 
     return (
