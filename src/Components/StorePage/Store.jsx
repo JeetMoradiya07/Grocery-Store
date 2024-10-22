@@ -1,17 +1,27 @@
-import {useState, useEffect} from "react";
+// Store/Store.jsx
+import {useState} from "react";
+import {useQuery} from "@tanstack/react-query";
 import styles from "./Store.module.scss";
 import Item from "./Item";
 import {NavLink} from "react-router-dom";
 import PriceSlider from "./PriceSlider";
 import Search from "../UI/Search";
+import {fetchProducts} from "../../Store/api.js";
 
 export default function Store() {
-    const [products, setProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState([]);
     const [priceRange, setPriceRange] = useState([0, 1000]);
-    const [maxPrice, setMaxPrice] = useState(1000);
     const [sortOption, setSortOption] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+
+    // Fetch products using react-query
+    const {
+        data: products = [],
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ["products"], // Unique key for the query
+        queryFn: fetchProducts, // The function that fetches the data
+    });
 
     const handlePriceChange = (event, newValue) => {
         setPriceRange(newValue);
@@ -25,50 +35,36 @@ export default function Store() {
         setSearchQuery(event.target.value.toLowerCase());
     };
 
-    useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json())
-            .then((data) => {
-                setProducts(data);
-                setFilteredProducts(data);
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error loading products</div>;
 
-                const max = Math.round(Math.max(...data.map((product) => product.price)));
-                setMaxPrice(max);
-                setPriceRange([0, max]);
-            })
-            .catch((error) => console.error("Error fetching products:", error));
-    }, []);
+    // Filter products by search, price range, and sorting options
+    let filteredProducts = products.filter((product) => {
+        const inPriceRange = product.price >= priceRange[0] && product.price <= priceRange[1];
+        const matchesSearch = product.title.toLowerCase().includes(searchQuery);
+        return inPriceRange && matchesSearch;
+    });
 
-    useEffect(() => {
-        let filtered = products.filter((product) => {
-            const inPriceRange = product.price >= priceRange[0] && product.price <= priceRange[1];
-
-            const matchesSearch = product.title.toLowerCase().includes(searchQuery);
-            return inPriceRange && matchesSearch;
-        });
-
-        switch (sortOption) {
-            case "newest":
-                filtered = [...filtered].sort((a, b) => b.id - a.id);
-                break;
-            case "lowToHigh":
-                filtered = [...filtered].sort((a, b) => a.price - b.price);
-                break;
-            case "highToLow":
-                filtered = [...filtered].sort((a, b) => b.price - a.price);
-                break;
-            case "aToZ":
-                filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            case "zToA":
-                filtered = [...filtered].sort((a, b) => b.title.localeCompare(a.title));
-                break;
-            default:
-                break;
-        }
-
-        setFilteredProducts(filtered);
-    }, [priceRange, products, sortOption, searchQuery]);
+    // Sort logic
+    switch (sortOption) {
+        case "newest":
+            filteredProducts = filteredProducts.sort((a, b) => b.id - a.id);
+            break;
+        case "lowToHigh":
+            filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
+            break;
+        case "highToLow":
+            filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
+            break;
+        case "aToZ":
+            filteredProducts = filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case "zToA":
+            filteredProducts = filteredProducts.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        default:
+            break;
+    }
 
     return (
         <div className={styles.Store}>
@@ -86,7 +82,7 @@ export default function Store() {
 
                 <div className={styles.price}>
                     <h2>Filter By</h2>
-                    <PriceSlider value={priceRange} max={maxPrice} handleChange={handlePriceChange} />
+                    <PriceSlider value={priceRange} handleChange={handlePriceChange} />
                 </div>
             </div>
 

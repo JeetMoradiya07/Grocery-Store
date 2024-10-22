@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 475px;
+    width: 400px;
     padding: 160px 10px 20px 10px;
     height: 100vh;
     background-color: $l-bcg;
@@ -18,6 +18,12 @@
     li {
         list-style: none;
     }
+
+    button {
+        background: none;
+        border: none;
+        outline: none;
+    }
 }
 
 .overlay {
@@ -26,7 +32,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 50;
 }
 
@@ -74,4 +80,42 @@
     right: 50%;
     transform: translateX(50%);
     transition: all 0.1s;
+}
+.menu_items {
+    list-style: none;
+    padding: 0;
+    
+    .icons {
+        padding: 7px; // Apply padding
+        border: 2px solid #9f7de8; // Border style
+        border-radius: 50px; // Rounded corners
+        display: inline-flex; // Make sure it fits the icon
+        justify-content: center; // Center the icon
+        align-items: center; // Center vertically
+        background-color: transparent; // Ensure it blends well
+        transition: background-color 0.3s; // Smooth hover effect
+    }
+
+    .iconDetail {
+        display: flex;
+        padding: 7px; // Apply padding
+        border: 2px solid #9f7de8; // Border style
+        width: 100%;
+        border-radius: 50px; // Rounded corners
+        font-size: 16px;
+    }
+
+    .menuLink,
+    .menuButton {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        color: inherit;
+        text-decoration: none;
+        width: 100%;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
 }

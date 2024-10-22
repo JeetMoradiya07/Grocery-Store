@@ -4,30 +4,34 @@ import "swiper/css/navigation";
 import {Navigation} from "swiper/modules";
 import Item from "../../StorePage/Item";
 import styles from "./Slider.module.scss";
-import {useRef, useState, useEffect} from "react";
+import {useRef, useState} from "react";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
+import {useQuery} from "@tanstack/react-query";
+import {fetchProducts} from "@/Store/api.js";
 
 export default function Slider() {
     const swiperRef = useRef(null);
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
-    const [products, setProducts] = useState([]);
 
-    // Fetch product data from API
-    useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json())
-            .then((data) => {
-                setProducts(data); // Set the fetched data to state
-            })
-            .catch((error) => console.error("Error fetching products:", error));
-    }, []);
+    // Fetch product data using react-query
+    const {
+        data: products = [],
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ["products"],
+        queryFn: fetchProducts,
+    });
 
     const handleSlideChange = (swiper) => {
         setIsBeginning(swiper.isBeginning);
         setIsEnd(swiper.isEnd);
     };
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error loading products</div>;
 
     return (
         <>

@@ -4,6 +4,9 @@ import styles from "./Sidebar.module.scss";
 import {FaUserCircle} from "react-icons/fa";
 import {IoClose} from "react-icons/io5";
 import {useState} from "react";
+import {FiLogIn} from "react-icons/fi";
+import {IoCartSharp} from "react-icons/io5";
+import {CgProfile} from "react-icons/cg";
 
 const sidebarVariants = {
     open: {
@@ -39,8 +42,8 @@ const pfpVariants = {
     },
 };
 
-const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart, profileIsOpen, toggleProfile}) => {
-    const [userName, setuserName] = useState("Your Name");
+const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
+    const [userName] = useState("Your Name");
 
     const stopPropagation = (e) => {
         e.stopPropagation();
@@ -74,25 +77,36 @@ const Sidebar = ({isOpen, onClose, onClick, cartIsOpen, toggleCart, profileIsOpe
                     </button>
                 )}
                 <ul className={styles.menu_items}>
-                    <li className={styles.menu_item}>
-                        <NavLink to="/login" onClick={onClose}>
-                            <button className={styles.Button}>Login</button>
-                        </NavLink>
-                    </li>
-                    <li className={styles.menu_item}>
-                        <button className={styles.Button} onClick={toggleCart}>
-                            Cart
-                        </button>
-                    </li>
-                    <li className={styles.menu_item}>
-                        <button className={styles.Button} onClick={toggleProfile}>
-                            View Profile
-                        </button>
-                    </li>
-                   
+                    <MenuItem icon={<FiLogIn size={20} />} link="/login" onClick={onClose}>
+                        Login
+                    </MenuItem>
+                    <MenuItem icon={<IoCartSharp size={20} />} onClick={toggleCart}>
+                        Cart
+                    </MenuItem>
+                    <MenuItem icon={<CgProfile size={20} />} onClick={toggleProfile}>
+                        View Profile
+                    </MenuItem>
                 </ul>
             </motion.div>
         </>
+    );
+};
+
+const MenuItem = ({icon, children, link, onClick}) => {
+    return (
+        <motion.li whileHover={{scale: 1.1}} whileTap={{scale: 0.95}}>
+            {link ? (
+                <NavLink to={link} onClick={onClick} className={styles.menuLink}>
+                    <div className={styles.icons}>{icon}</div>
+                    <span className={styles.iconDetail}>{children}</span>
+                </NavLink>
+            ) : (
+                <button onClick={onClick} className={styles.menuButton}>
+                    <div className={styles.icons}>{icon}</div>
+                    <span className={styles.iconDetail}>{children}</span>
+                </button>
+            )}
+        </motion.li>
     );
 };
 
