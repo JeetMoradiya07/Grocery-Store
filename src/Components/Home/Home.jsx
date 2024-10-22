@@ -5,6 +5,7 @@ import introImg3 from "@/assets/Images/introImg3.png";
 import GearupSection from "./Gearup/GearupSection";
 import {NavLink} from "react-router-dom";
 import Parallax from "./Parallax/Parallax";
+import FeedBack from "./FeedBack/FeedBack";
 
 export default function Home() {
     return (
@@ -41,6 +42,7 @@ export default function Home() {
                     </>
                 }
             />
+            <FeedBack />
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import "swiper/css"; 
-import "swiper/css/navigation"; 
+import "swiper/css";
+import "swiper/css/navigation";
 import {Navigation} from "swiper/modules";
 import Item from "../../StorePage/Item";
 import styles from "./Slider.module.scss";
@@ -10,9 +10,9 @@ import {NavLink} from "react-router-dom";
 
 export default function Slider() {
     const swiperRef = useRef(null);
-    const [isBeginning, setIsBeginning] = useState(true); 
-    const [isEnd, setIsEnd] = useState(false); 
-    const [products, setProducts] = useState([]); 
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
+    const [products, setProducts] = useState([]);
 
     // Fetch product data from API
     useEffect(() => {
@@ -22,11 +22,11 @@ export default function Slider() {
                 setProducts(data); // Set the fetched data to state
             })
             .catch((error) => console.error("Error fetching products:", error));
-    }, []); 
+    }, []);
 
     const handleSlideChange = (swiper) => {
-        setIsBeginning(swiper.isBeginning); 
-        setIsEnd(swiper.isEnd); 
+        setIsBeginning(swiper.isBeginning);
+        setIsEnd(swiper.isEnd);
     };
 
     return (
@@ -36,17 +36,28 @@ export default function Slider() {
                 <button
                     className={styles.prevButton}
                     onClick={() => swiperRef.current.swiper.slidePrev()}
-                    style={{opacity: isBeginning ? 0.5 : 1}} 
-                    disabled={isBeginning} 
+                    style={{opacity: isBeginning ? 0.5 : 1}}
+                    disabled={isBeginning}
                 >
                     <FaArrowLeft size={20} />
                 </button>
 
                 {/* Swiper with API Data */}
                 <Swiper
-                    ref={swiperRef} 
-                    spaceBetween={30} 
+                    ref={swiperRef}
+                    spaceBetween={30}
                     slidesPerView={4}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 1, // 1 slide for very small screens
+                        },
+                        768: {
+                            slidesPerView: 2, // 2 slides for screens wider than 768px
+                        },
+                        1024: {
+                            slidesPerView: 4, // 4 slides for screens wider than 1024px
+                        },
+                    }}
                     navigation={false}
                     modules={[Navigation]}
                     className={styles.swiper}
@@ -66,8 +77,8 @@ export default function Slider() {
                 <button
                     className={styles.nextButton}
                     onClick={() => swiperRef.current.swiper.slideNext()}
-                    style={{opacity: isEnd ? 0.5 : 1}} 
-                    disabled={isEnd} 
+                    style={{opacity: isEnd ? 0.5 : 1}}
+                    disabled={isEnd}
                 >
                     <FaArrowRight size={20} />
                 </button>
