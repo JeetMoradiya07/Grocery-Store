@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Cart.module.scss";
 import Cart_Product from "./Cart_Product";
+import empty from "../../../assets/empty.mp4";
 
 export default function Cart({ onClose }) {
     // Step 1: Set up state for managing cart products
@@ -46,7 +47,7 @@ export default function Cart({ onClose }) {
                         />
                     ))}
                 </div>
-                <div className={styles.payment}>
+                {/* <div className={styles.payment}>
                     <div className={styles.delivery_checkout}>
                         <p>Delivery</p>
                         <p>Calculated at checkout</p>
@@ -64,13 +65,16 @@ export default function Cart({ onClose }) {
                         </div>
                         <div>
                             <p>
-                                <b>$ {totalPrice}</b> {/* Dynamic total price */}
+                                <b>$ {totalPrice}</b>
                             </p>
                         </div>
                     </div>
                     <div className={styles.pay}>
                         <button>Go to Checkout</button>
                     </div>
+                </div> */}
+                <div className={styles.Cart_video}>
+                    <video className={styles.Cart_video_item} src={empty} autoPlay muted loop></video>
                 </div>
             </div>
         </>
