@@ -12,18 +12,29 @@ export default function Parallax({jsx, id}) {
             if (!parallaxRef.current) return;
 
             const rect = parallaxRef.current.getBoundingClientRect();
-            const scrollPos = Math.min(Math.max(rect.top - window.innerHeight / 10, 0), window.innerHeight);
-            const scrollPercent = scrollPos / window.innerHeight;
+            const elementHeight = rect.height;
+            const viewportHeight = window.innerHeight;
 
-            setScrollY(scrollPercent);
+            // Calculate scroll position after the element fully enters the viewport
+            if (rect.top >= viewportHeight) {
+                setScrollY(0); // Before entering viewport
+            } else if (rect.bottom <= 0) {
+                setScrollY(1); // Fully out of view
+            } else {
+                // Calculate scroll percentage after the element fully enters the viewport
+                const scrollPos = Math.min(Math.max(viewportHeight - rect.top, 0), viewportHeight + elementHeight);
+                const scrollPercent = scrollPos / (viewportHeight + elementHeight); // Normalize
+
+                setScrollY(scrollPercent);
+            }
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const scaleValue = 1 + 0.5 * (1 - scrollY);
-    const opacityValue = scrollY + 0.3;
+    const scaleValue = 1 + 0.5 * scrollY; // Scale increases as scrollY increases
+    const opacityValue = 1 - scrollY; // Opacity fades out smoothly
 
     return (
         <div ref={parallaxRef} id={id} className={styles.Parallax}>
@@ -31,7 +42,7 @@ export default function Parallax({jsx, id}) {
                 <motion.div
                     className={styles.imageContainer}
                     style={{
-                        scale: scaleValue,
+                        scale: scaleValue, // Correct scale behavior
                         opacity: opacityValue,
                     }}
                 >
