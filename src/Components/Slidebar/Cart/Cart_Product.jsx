@@ -5,16 +5,17 @@ import { IoIosAdd } from "react-icons/io";
 import { GrFormSubtract } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 
+
 export default function Cart_Product({ onUpdateQuantity, onRemove, index, initialQuantity = 1 }) {
     // Set up state for the product quantity
     const [number, setNumber] = useState(initialQuantity);
-    const basePrice = 399; 
+    const basePrice = 399;
 
     // Increment quantity
     const increment = () => {
         setNumber((prevNumber) => {
             const newQuantity = prevNumber + 1;
-            onUpdateQuantity(index, newQuantity); 
+            onUpdateQuantity(index, newQuantity);
             return newQuantity;
         });
     };
@@ -24,7 +25,7 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
         if (number > 1) {
             setNumber((prevNumber) => {
                 const newQuantity = prevNumber - 1;
-                onUpdateQuantity(index, newQuantity); 
+                onUpdateQuantity(index, newQuantity);
                 return newQuantity;
             });
         }
@@ -32,14 +33,14 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
 
     // Remove the product
     const removeProduct = () => {
-        onRemove(index); 
+        onRemove(index);
     };
 
     const totalPrice = basePrice * number;
 
     return (
         <div className={styles.product_detail}>
-            <div className={styles.product_img}>
+            {/* <div className={styles.product_img}>
                 <img className={styles.product_image} src={fernando} alt="Product" />
             </div>
             <div className={styles.product_info}>
@@ -61,20 +62,21 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
                         </div>
 
                         <div className={styles.product_quantity_show}>
-                            <h4>{number}</h4> 
+                            <h4>{number}</h4>
                         </div>
 
-                        {/* Increment button */}
                         <div className={styles.product_quantity_addition}>
                             <IoIosAdd onClick={increment} />
                         </div>
                     </div>
 
                     <div className={styles.product_price}>
-                        <h4>$ {totalPrice}</h4> 
+                        <h4>$ {totalPrice}</h4>
                     </div>
                 </div>
-            </div>
+            </div> */}
+
+            
         </div>
     );
 }
