@@ -1,6 +1,31 @@
 .footer {
-    height: 20px;
+
+    position: relative;
     display: flex;
+    background: $radial-bcg;
+    width: 100%;
     align-items: center;
+    justify-content: space-between;
     padding: 0 60px;
+    z-index: 1000;
+
+    img {
+        width: 100%;
+        filter: drop-shadow(0 0 7px $p-c);
+    }
+
+    .logo {
+        width: 20%;
+    }
+
+    .creators {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1%;
+    }
+
+    .creator {
+        width: 20%;
+    }
 }

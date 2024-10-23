@@ -1,29 +1,39 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import styles from "./Login.module.scss";
 import Error from "@/Components/UI/Error.jsx"; // Import Error component
 
-export default function Login() {
+export default function Login({setErrorMessages}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [messages, setMessages] = useState([]); // State for error messages
+    const [messages, setMessages] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedMessages = localStorage.getItem("messages");
+        if (storedMessages) {
+            setMessages(JSON.parse(storedMessages));
+            localStorage.removeItem("messages"); // Clear after displaying
+        }
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setMessages([]); // Clear previous messages
+        setMessages([]);
 
         const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
         const user = existingUsers.find((user) => user.username === username && user.password === password);
 
         if (!user) {
-            return setMessages([{type: "error", text: "Invalid username or password."}]);
+            setErrorMessages([{type: "error", text: "Invalid username or password."}]);
+            return; // Early exit to prevent navigation
         }
 
-        // Clear messages before navigating to home
-        setMessages([{type: "success", text: "Login successful!"}]);
+        setErrorMessages([{type: "success", text: "Login successful!"}]);
+        localStorage.setItem("auth", true); // Set authentication
+        localStorage.setItem("authUser", JSON.stringify(username)); // Store the username
         navigate("/"); // Redirect to home page
     };
 
@@ -31,7 +41,7 @@ export default function Login() {
         <div className={styles.login}>
             <div className={styles.Form}>
                 <h1>Login</h1>
-                <Error messages={messages} /> {/* Display error messages */}
+                <Error messages={messages} />
                 <form onSubmit={handleSubmit}>
                     <Input
                         label={"Username"}

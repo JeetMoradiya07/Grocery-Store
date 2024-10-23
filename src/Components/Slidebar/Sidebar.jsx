@@ -3,8 +3,8 @@ import {NavLink} from "react-router-dom";
 import styles from "./Sidebar.module.scss";
 import {FaUserCircle} from "react-icons/fa";
 import {IoClose} from "react-icons/io5";
-import {useState} from "react";
-import {FiLogIn} from "react-icons/fi";
+import {useEffect, useState} from "react";
+import {FiLogIn, FiLogOut} from "react-icons/fi";
 import {IoCartSharp} from "react-icons/io5";
 import {CgProfile} from "react-icons/cg";
 
@@ -43,13 +43,31 @@ const pfpVariants = {
 };
 
 const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
-    const [userName] = useState("Your Name");
+    const isAuthenticated = !!localStorage.getItem("auth");
+    const [userDetails, setUserDetails] = useState({name: "User", pfp: ""});
 
-    const stopPropagation = (e) => {
-        e.stopPropagation();
-    };
+    useEffect(() => {
+        if (isAuthenticated) {
+            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+            const loggedInUsername = JSON.parse(localStorage.getItem("authUser"));
+            const loggedInUser = existingUsers.find((user) => user.username === loggedInUsername);
+
+            if (loggedInUser) {
+                setUserDetails({name: loggedInUser.name, pfp: loggedInUser.pfp});
+            }
+        }
+    }, [isAuthenticated]);
+
+    const stopPropagation = (e) => e.stopPropagation();
 
     const handleOverlayClick = () => {
+        onClose();
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("auth");
+        localStorage.removeItem("authUser");
+        setUserDetails({name: "User", pfp: ""});
         onClose();
     };
 
@@ -65,10 +83,11 @@ const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
             >
                 <div className={styles.pfpWrapper}>
                     <motion.div className={styles.pfp} onClick={onClick} variants={pfpVariants} animate={isOpen ? "open" : "closed"}>
-                        <FaUserCircle size={30} />
+                        {userDetails.pfp ? <img src={userDetails.pfp} alt="Profile" className={styles.profileImage} /> : <FaUserCircle size={30} />}
                     </motion.div>
+
                     <div className={styles.userName}>
-                        <h2>{userName}</h2>
+                        <h2>{userDetails.name}</h2>
                     </div>
                 </div>
                 {isOpen && (
@@ -77,15 +96,23 @@ const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
                     </button>
                 )}
                 <ul className={styles.menu_items}>
-                    <MenuItem icon={<FiLogIn size={20} />} link="/login" onClick={onClose}>
-                        Login
-                    </MenuItem>
-                    <MenuItem icon={<IoCartSharp size={20} />} onClick={toggleCart}>
-                        Cart
-                    </MenuItem>
-                    <MenuItem icon={<CgProfile size={20} />} onClick={toggleProfile}>
-                        View Profile
-                    </MenuItem>
+                    {isAuthenticated ? (
+                        <>
+                            <MenuItem icon={<CgProfile size={20} />} onClick={toggleProfile}>
+                                View Profile
+                            </MenuItem>
+                            <MenuItem icon={<IoCartSharp size={20} />} onClick={toggleCart}>
+                                Cart
+                            </MenuItem>
+                            <MenuItem icon={<FiLogOut size={20} />} onClick={handleLogout}>
+                                Logout
+                            </MenuItem>
+                        </>
+                    ) : (
+                        <MenuItem icon={<FiLogIn size={20} />} link="/login" onClick={onClose}>
+                            Login
+                        </MenuItem>
+                    )}
                 </ul>
             </motion.div>
         </>
