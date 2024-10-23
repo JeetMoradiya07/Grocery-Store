@@ -9,6 +9,16 @@ export const fetchProducts = async () => {
     return data;
 };
 
+// Fetch products by ID
+export const fetchProductById = async (id) => {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch product details");
+    }
+    const data = await response.json();
+    return data;
+};
+
 export const fetchCart = async () => {
     const response = await fetch("https://fakestoreapi.com/carts");
     if (!response.ok) {

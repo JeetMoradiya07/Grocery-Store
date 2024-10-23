@@ -6,7 +6,7 @@ import StorePage from "./pages/StorePage";
 import AboutPage from "./pages/AboutPage";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Login/Register";
-import Product from "./Components/Product/Product";
+import Product from "./Components/Product/Product"; // Product details component
 import Error from "./Components/UI/Error";
 import {QueryErrorResetBoundary} from "@tanstack/react-query";
 
@@ -25,9 +25,10 @@ function App() {
                         <Route path="login" element={<Login setErrorMessages={setErrorMessages} />} />
                         <Route path="register" element={<Register setErrorMessages={setErrorMessages} />} />
                         <Route path="store" element={isAuthenticated ? <StorePage /> : <Navigate to="/login" />} />
-                        <Route path="product" element={isAuthenticated ? <Product /> : <Navigate to="/login" />} />
+                        {/* Updated route to handle dynamic product IDs */}
                         <Route path="*" element={<h2>404 - Not Found</h2>} />
                     </Route>
+                    <Route path="product/:id" element={isAuthenticated ? <Product /> : <Navigate to="/login" />} />
                 </Routes>
             </QueryErrorResetBoundary>
         </>
