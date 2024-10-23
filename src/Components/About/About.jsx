@@ -3,6 +3,7 @@ import styles from "./About.module.scss";
 import Wizard from "@/assets/Images/Wizard.png";
 import Danger from "@/assets/Images/Danger.png";
 import Power from "@/assets/Images/Power.png";
+import Feedback from "../Home/FeedBack/FeedBack"
 
 export default function About() {
     const [scrollY, setScrollY] = useState(0);
@@ -32,6 +33,7 @@ export default function About() {
                     </div>
                 </div>
             </div>
+            <Feedback/>
         </div>
     );
 }
