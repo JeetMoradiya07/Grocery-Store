@@ -89,10 +89,13 @@
         height: 40px;
     }
 }
-
 .Cart_video {
+    height: 100%;
     display: flex;
-}
-.Cart_video_item {
-    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    video {
+        width: 80%;
+    }
 }

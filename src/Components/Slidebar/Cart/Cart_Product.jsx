@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styles from "./Cart_Product.module.scss";
-import fernando from "@/assets/Images/fernando-andrade-potCPE-Cw8A-unsplash.jpg";
-import { IoIosAdd } from "react-icons/io";
-import { GrFormSubtract } from "react-icons/gr";
-import { MdDelete } from "react-icons/md";
+import {IoIosAdd} from "react-icons/io";
+import {GrFormSubtract} from "react-icons/gr";
+import {MdDelete} from "react-icons/md";
 
-
-export default function Cart_Product({ onUpdateQuantity, onRemove, index, initialQuantity = 1 }) {
-    // Set up state for the product quantity
+export default function Cart_Product({onUpdateQuantity, onRemove, index, initialQuantity = 1, title, price, image}) {
     const [number, setNumber] = useState(initialQuantity);
-    const basePrice = 399;
 
-    // Increment quantity
     const increment = () => {
         setNumber((prevNumber) => {
             const newQuantity = prevNumber + 1;
@@ -20,7 +15,6 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
         });
     };
 
-    // Decrement quantity, ensuring it doesn't go below 1
     const decrement = () => {
         if (number > 1) {
             setNumber((prevNumber) => {
@@ -31,23 +25,22 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
         }
     };
 
-    // Remove the product
     const removeProduct = () => {
         onRemove(index);
     };
 
-    const totalPrice = basePrice * number;
+    const totalPrice = price * number;
 
     return (
         <div className={styles.product_detail}>
-            {/* <div className={styles.product_img}>
-                <img className={styles.product_image} src={fernando} alt="Product" />
+            <div className={styles.product_img}>
+                <img className={styles.product_image} src={image} alt={title} />
             </div>
             <div className={styles.product_info}>
                 <div className={styles.product_data}>
                     <div className={styles.product_name}>
-                        <h2>OUR LEGACY - With correction</h2>
-                        <h4>Size - Medium</h4>
+                        <h2>{title}</h2> {/* Dynamic product title */}
+                        <h4>Size - Medium</h4> {/* Add size dynamically if available */}
                     </div>
                 </div>
 
@@ -71,12 +64,10 @@ export default function Cart_Product({ onUpdateQuantity, onRemove, index, initia
                     </div>
 
                     <div className={styles.product_price}>
-                        <h4>$ {totalPrice}</h4>
+                        <h4>$ {totalPrice.toFixed(2)}</h4> {/* Dynamic total price */}
                     </div>
                 </div>
-            </div> */}
-
-            
+            </div>
         </div>
     );
 }
