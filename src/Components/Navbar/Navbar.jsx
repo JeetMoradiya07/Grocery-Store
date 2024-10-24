@@ -5,7 +5,7 @@ import styles from "./Navbar.module.scss";
 import logo from "/src/assets/Images/WDP.png";
 import {FaUserCircle} from "react-icons/fa";
 import Cart from "../Slidebar/Cart/Cart";
-import Profile from "../Slidebar/Profile/Profile"; 
+import Profile from "../Slidebar/Profile/Profile";
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -67,7 +67,7 @@ const Navbar = () => {
                 toggleProfile={toggleProfile}
             />
             {cartIsOpen && <Cart onClose={toggleCart} />}
-            {profileIsOpen && <Profile onClose={toggleProfile} />} {/* Render Profile when profileIsOpen is true */}
+            {profileIsOpen && <Profile onClose={toggleProfile} onClick={openSidebar} />}
         </nav>
     );
 };
