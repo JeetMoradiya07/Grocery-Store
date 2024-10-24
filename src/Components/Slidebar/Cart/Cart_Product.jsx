@@ -39,8 +39,8 @@ export default function Cart_Product({onUpdateQuantity, onRemove, index, initial
             <div className={styles.product_info}>
                 <div className={styles.product_data}>
                     <div className={styles.product_name}>
-                        <h2>{title}</h2> {/* Dynamic product title */}
-                        <h4>Size - Medium</h4> {/* Add size dynamically if available */}
+                        <h2>{title}</h2>
+                        <h4>Size - Medium</h4> 
                     </div>
                 </div>
 
