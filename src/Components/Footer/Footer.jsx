@@ -15,10 +15,10 @@ const Footer = () => {
                     <div className={styles.lowFooter}>
                         <h2> Contact us </h2>
                         <p>
-                            Email: <br /> <a href="mailto:the.ts.storm@gmail.com">the.ts.storm@gmail.com</a>
+                            Email: <a href="mailto:the.ts.storm@gmail.com">the.ts.storm@gmail.com</a>
                         </p>
                         <p>
-                            Mobile: <br /> <a href="tel:+917779993260">+91 7779993260</a>
+                            Mobile: <a href="tel:+917779993260">+91 7779993260</a>
                         </p>
                     </div>
                     <div className={styles.logos}>

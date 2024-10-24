@@ -33,7 +33,7 @@ export default function Parallax({jsx, id}) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const scaleValue = 1 + 0.5 * scrollY; // Scale increases as scrollY increases
+    const scaleValue = 1 + 2 * scrollY; // Scale increases as scrollY increases
     const opacityValue = 1 - scrollY; // Opacity fades out smoothly
 
     return (

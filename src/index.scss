@@ -9,7 +9,6 @@
 
 body {
     min-height: 100vh;
-
     font-family: $Roboto;
 
     // Dark Theme
@@ -17,14 +16,15 @@ body {
     color: $d-c !important;
 
     // Light Theme
-    &[data-theme="Light"] {
+    &[data-theme="light"] {
         background-color: $l-bcg !important;
         color: $l-c !important;
     }
 
+    // Selection Colors
     *::selection {
-        background-color: $s-c !important; // Ensure the background color is applied
-        color: $d-c !important; // Ensure the text color is applied
+        background-color: $s-c !important;
+        color: $d-c !important;
     }
 }
 
@@ -53,9 +53,9 @@ button {
     padding: 7px 28px;
     border: none;
     outline: none;
-    
+
     @media (max-width: 768px) {
         font-size: 16px;
-       padding: 5px 21px;
+        padding: 5px 21px;
     }
 }

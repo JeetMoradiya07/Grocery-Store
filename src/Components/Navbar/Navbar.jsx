@@ -8,33 +8,17 @@ import Cart from "../Slidebar/Cart/Cart";
 import Profile from "../Slidebar/Profile/Profile";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
 
-const storageKey = "theme-preference";
-
-const getColorPreference = () => {
-    if (localStorage.getItem(storageKey)) {
-        return localStorage.getItem(storageKey);
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-};
-
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [cartIsOpen, setCartIsOpen] = useState(false);
     const [profileIsOpen, setProfileIsOpen] = useState(false);
 
-    const openSidebar = () => {
-        setIsSidebarOpen(true);
-    };
-
-    const closeSidebar = () => {
-        setIsSidebarOpen(false);
-    };
-
+    const openSidebar = () => setIsSidebarOpen(true);
+    const closeSidebar = () => setIsSidebarOpen(false);
     const toggleCart = () => {
         setIsSidebarOpen(false);
         setCartIsOpen((prev) => !prev);
     };
-
     const toggleProfile = () => {
         setIsSidebarOpen(false);
         setProfileIsOpen((prev) => !prev);
@@ -73,14 +57,13 @@ const Navbar = () => {
             <Sidebar
                 isOpen={isSidebarOpen}
                 onClose={closeSidebar}
-                onClick={openSidebar}
                 cartIsOpen={cartIsOpen}
                 toggleCart={toggleCart}
                 profileIsOpen={profileIsOpen}
                 toggleProfile={toggleProfile}
             />
             {cartIsOpen && <Cart onClose={toggleCart} />}
-            {profileIsOpen && <Profile onClose={toggleProfile} onClick={openSidebar} />}
+            {profileIsOpen && <Profile onClose={toggleProfile} />}
         </nav>
     );
 };

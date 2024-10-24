@@ -3,10 +3,16 @@ import styles from "./ThemeToggle.module.scss";
 
 const storageKey = "theme-preference";
 
+const getColorPreference = () => {
+    const storedTheme = localStorage.getItem(storageKey);
+    if (storedTheme) return storedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+
 const ThemeToggle = () => {
     const [theme, setTheme] = useState(getColorPreference());
 
-    const toggleTheme = () => {
+    const onClick = () => {
         const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
         localStorage.setItem(storageKey, newTheme);
@@ -21,28 +27,23 @@ const ThemeToggle = () => {
     useEffect(() => {
         reflectPreference(theme);
 
-        const systemThemeListener = window.matchMedia("(prefers-color-scheme: dark)");
-        systemThemeListener.addEventListener("change", ({matches: isDark}) => {
-            const systemTheme = isDark ? "dark" : "light";
+        const handleSystemThemeChange = (e) => {
+            const systemTheme = e.matches ? "dark" : "light";
             setTheme(systemTheme);
             localStorage.setItem(storageKey, systemTheme);
             reflectPreference(systemTheme);
-        });
+        };
+
+        const systemThemeListener = window.matchMedia("(prefers-color-scheme: dark)");
+        systemThemeListener.addEventListener("change", handleSystemThemeChange);
 
         return () => {
-            systemThemeListener.removeEventListener("change", toggleTheme);
+            systemThemeListener.removeEventListener("change", handleSystemThemeChange);
         };
     }, [theme]);
 
     return (
-        <button
-            className={styles.themeToggle}
-            id="theme-toggle"
-            title="Toggles light & dark"
-            aria-label={theme}
-            aria-live="polite"
-            onClick={toggleTheme}
-        >
+        <button className={styles.themeToggle} id="theme-toggle" onClick={onClick} title="Toggles light & dark" aria-label={theme} aria-live="polite">
             <svg className={styles.sunAndMoon} aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                 <mask className={styles.moon} id="moon-mask">
                     <rect x="0" y="0" width="100%" height="100%" fill="white" />
@@ -62,13 +63,6 @@ const ThemeToggle = () => {
             </svg>
         </button>
     );
-};
-
-const getColorPreference = () => {
-    if (localStorage.getItem(storageKey)) {
-        return localStorage.getItem(storageKey);
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
 export default ThemeToggle;
