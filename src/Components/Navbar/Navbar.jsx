@@ -6,6 +6,16 @@ import logo from "/src/assets/Images/WDP.png";
 import {FaUserCircle} from "react-icons/fa";
 import Cart from "../Slidebar/Cart/Cart";
 import Profile from "../Slidebar/Profile/Profile";
+import ThemeToggle from "./ThemeToggle/ThemeToggle";
+
+const storageKey = "theme-preference";
+
+const getColorPreference = () => {
+    if (localStorage.getItem(storageKey)) {
+        return localStorage.getItem(storageKey);
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -52,6 +62,9 @@ const Navbar = () => {
                     <NavLink to="/about" className={({isActive}) => (isActive ? styles.active : "")}>
                         About
                     </NavLink>
+                </li>
+                <li>
+                    <ThemeToggle />
                 </li>
                 <li className={styles.login} onClick={openSidebar}>
                     <FaUserCircle size={30} />
