@@ -1,9 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
-import {IoCameraSharp} from "react-icons/io5";
-import {FaUserCircle} from "react-icons/fa";
+import { IoCameraSharp } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
+import { IoArrowBack } from "react-icons/io5";
+import { MdClose } from "react-icons/md";
 
-export default function Profile({onClose}) {
+
+
+export default function Profile({ onClose }) {
     const [profile, setProfile] = useState({
         name: "",
         email: "",
@@ -26,8 +30,8 @@ export default function Profile({onClose}) {
     }, []);
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setEditProfile({...editProfile, [name]: value});
+        const { name, value } = e.target;
+        setEditProfile({ ...editProfile, [name]: value });
     };
 
     const handleAvatarChange = (e) => {
@@ -35,7 +39,7 @@ export default function Profile({onClose}) {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setEditProfile({...editProfile, avatarUrl: reader.result});
+                setEditProfile({ ...editProfile, avatarUrl: reader.result });
             };
             reader.readAsDataURL(file);
         }
@@ -53,6 +57,10 @@ export default function Profile({onClose}) {
         <>
             <div className={styles.overlay} onClick={onClose} />
             <div className={styles.Profile}>
+                <div className={styles.add_back}>
+                    <button><IoArrowBack /></button>
+                    <button onClick={onClose}><MdClose /></button>
+                </div>
                 <div className={styles.profile_view}>
                     {isEditing ? (
                         <div className={styles.edit_mode}>
