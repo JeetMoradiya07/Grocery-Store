@@ -1,12 +1,12 @@
 .footer {
-
     position: relative;
     display: flex;
+    flex-direction: column;
     background: $radial-bcg;
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 0 60px;
+    padding: 10px 60px;
     z-index: 1000;
 
     img {
@@ -27,5 +27,31 @@
 
     .creator {
         width: 20%;
+    }
+
+    .upFooter {
+        display: flex;
+        align-items: center;
+        gap: 7%;
+    }
+
+    .lowFooter {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: $p-c;
+        }
+    }
+
+    .logos {
+        display: flex;
+        justify-content: flex-end;
+        width: fit-content;
     }
 }

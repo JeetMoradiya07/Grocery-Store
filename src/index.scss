@@ -53,4 +53,9 @@ button {
     padding: 7px 28px;
     border: none;
     outline: none;
+    
+    @media (max-width: 768px) {
+        font-size: 16px;
+       padding: 5px 21px;
+    }
 }

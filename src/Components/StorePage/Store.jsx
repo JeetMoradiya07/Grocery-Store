@@ -1,4 +1,3 @@
-// Store/Store.jsx
 import {useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import styles from "./Store.module.scss";
@@ -12,6 +11,7 @@ export default function Store() {
     const [priceRange, setPriceRange] = useState([0, 1000]);
     const [sortOption, setSortOption] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar toggle state
 
     // Fetch products using react-query
     const {
@@ -19,8 +19,8 @@ export default function Store() {
         isLoading,
         isError,
     } = useQuery({
-        queryKey: ["products"], // Unique key for the query
-        queryFn: fetchProducts, // The function that fetches the data
+        queryKey: ["products"],
+        queryFn: fetchProducts,
     });
 
     const handlePriceChange = (event, newValue) => {
@@ -38,37 +38,15 @@ export default function Store() {
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error loading products</div>;
 
-    // Filter products by search, price range, and sorting options
     let filteredProducts = products.filter((product) => {
         const inPriceRange = product.price >= priceRange[0] && product.price <= priceRange[1];
         const matchesSearch = product.title.toLowerCase().includes(searchQuery);
         return inPriceRange && matchesSearch;
     });
 
-    // Sort logic
-    switch (sortOption) {
-        case "newest":
-            filteredProducts = filteredProducts.sort((a, b) => b.id - a.id);
-            break;
-        case "lowToHigh":
-            filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
-            break;
-        case "highToLow":
-            filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
-            break;
-        case "aToZ":
-            filteredProducts = filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-        case "zToA":
-            filteredProducts = filteredProducts.sort((a, b) => b.title.localeCompare(a.title));
-            break;
-        default:
-            break;
-    }
-
     return (
         <div className={styles.Store}>
-            <div className={styles.sideBar}>
+            <div className={`${styles.sideBar} ${isSidebarOpen ? styles.open : ""}`}>
                 <div className={styles.sortData}>
                     <h2>Sort By</h2>
                     <select value={sortOption} onChange={handleSortChange}>
@@ -88,11 +66,14 @@ export default function Store() {
 
             <div className={styles.products}>
                 <div className={styles.search}>
-                    <Search onChange={handleSearchChange} /> {/* Pass the handleSearchChange function */}
+                    <Search onChange={handleSearchChange} />
+                    <button className={styles.toggleButton} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                        Filter
+                    </button>
                 </div>
                 <div className={styles.heading}>
                     <h1>All Products</h1>
-                    <h2>{filteredProducts.length} products</h2> {/* Display the count of filtered products */}
+                    <h2>{filteredProducts.length} products</h2>
                 </div>
                 <div className={styles.productItems}>
                     {filteredProducts.map((product) => (

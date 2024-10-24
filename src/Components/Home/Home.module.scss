@@ -36,6 +36,7 @@
             top: 15%;
             left: 75%;
         }
+
         .introSell {
             color: $d-c;
             background: $radial-bcg;
@@ -51,7 +52,10 @@
             justify-content: center;
             gap: 7px;
             flex-direction: column;
-
+            @media (max-width: 768px) {
+                width: 80%;
+                height: 275px;
+            }
             h3 {
                 font-size: 24px;
                 font-family: $Fredericka;
@@ -61,17 +65,43 @@
             h1 {
                 font-size: 100px;
                 font-family: $Lora;
+                @media (max-width: 768px) {
+                    font-size: 70px;
+                }
             }
 
             h2 {
                 font-size: 32px;
                 font-family: $Fredericka;
                 font-weight: 500;
+                @media (max-width: 768px) {
+                    font-size: 28px;
+                }
             }
 
             button {
                 background: $d-c;
                 margin-top: 7px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .introImg1 {
+                width: 40%;
+                top: 35%;
+                left: 30%;
+            }
+            .introImg2 {
+                width: 40%;
+                top: 45%;
+                left: 70%;
+            }
+            .introImg3 {
+                width: 40%;
+                top: 60%;
+                left: 35%;
+            }
+            .introSell {
+                top: 5%;
             }
         }
     }

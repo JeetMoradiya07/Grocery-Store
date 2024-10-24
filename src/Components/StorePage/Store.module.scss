@@ -1,10 +1,26 @@
-@use "sass:color";
-
 .Store {
     min-height: calc(100vh - 20px);
     padding-top: 80px;
     position: relative;
     display: flex;
+
+    .toggleButton {
+        display: none;
+        background: $p-c;
+        color: $d-c;
+        z-index: 10;
+        font-family: $Lora;
+        font-size: 18px;
+        font-weight: 900;
+        border-radius: 25px;
+        padding: 7px 28px;
+        border: none;
+        outline: none;
+
+        @media (max-width: 992px) {
+            display: block;
+        }
+    }
 
     .sideBar {
         background: $s-c;
@@ -16,39 +32,21 @@
         flex-direction: column;
         gap: 40px;
         z-index: 7;
+        transition: transform 0.3s ease-in-out;
+
+        @media (max-width: 992px) {
+            transform: translateX(-100%);
+        }
+
+        &.open {
+            transform: translateX(0);
+        }
 
         h2 {
             font-size: 20px;
             padding-bottom: 5px;
             margin-bottom: 10px;
             border-bottom: 0.7px solid $p-c;
-        }
-        .price {
-        }
-        .sortData {
-            margin-bottom: 20px;
-
-            select {
-                width: 100%;
-                padding: 10px;
-                background: transparent; 
-                color: $d-c; 
-                border: 1px solid $p-c; 
-                border-radius: 4px; 
-                font-size: 16px; 
-                cursor: pointer; 
-
-                option {
-                    background: #000000; 
-
-                    color: $d-c; 
-                    padding: 10px; 
-                }
-
-                &:hover {
-                    border-color: darken($p-c, 10%); 
-                }
-            }
         }
     }
 
@@ -59,9 +57,20 @@
         padding-left: 320px;
         float: right;
 
+        @media (max-width: 992px) {
+            padding: 30px 20px;
+        }
         .search {
             position: absolute;
             right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+
+            @media (max-width: 768px) {
+                top: 140px;
+            }
         }
 
         .heading {
@@ -78,6 +87,9 @@
                 font-weight: 500;
                 margin-bottom: 25px;
                 margin-left: 20px;
+            }
+            @media (max-width: 768px) {
+               padding-bottom: 90px;
             }
         }
 
