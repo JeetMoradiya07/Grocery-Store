@@ -48,6 +48,20 @@
             margin-bottom: 10px;
             border-bottom: 0.7px solid $p-c;
         }
+        .sortData{
+            select{
+                width: 100%;
+                padding: 7px;
+                background: transparent;
+                outline: none;
+                color: $d-c;
+                border-radius: 3px;
+
+                option{
+                    background: black;
+                }
+            }
+        }
     }
 
     .products {

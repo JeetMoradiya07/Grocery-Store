@@ -2,25 +2,41 @@ import {useParams} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
 import styles from "./Product.module.scss";
 import {Button, Rating} from "@mui/material";
-import {fetchProductById} from "../../Store/api.js"; // Create a new function to fetch by ID
+import {fetchProductById} from "../../Store/api.js";
 import Loading from "../UI/Loading.jsx";
 import Navbar from "../Navbar/Navbar.jsx";
+import {useCart} from "../../Store/CartContext.jsx";
 
 export default function Product() {
-    const {id} = useParams(); // Get the product ID from the URL
+    const {id} = useParams();
 
-    // Fetch product details using react-query
+    const {openCart} = useCart();
+
     const {
         data: product,
         isLoading,
         isError,
     } = useQuery({
-        queryKey: ["product", id], // Query key that includes product ID
-        queryFn: () => fetchProductById(id), // Fetch product by ID
+        queryKey: ["product", id],
+        queryFn: () => fetchProductById(id),
     });
 
     if (isLoading) return <Loading />;
     if (isError) return <div>Error loading product details</div>;
+
+    const addToCart = () => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+
+        if (existingProductIndex >= 0) {
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            cart.push({...product, quantity: 1});
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        openCart();
+    };
 
     return (
         <>
@@ -39,7 +55,7 @@ export default function Product() {
                                 Reviews: <Rating name="half-rating-read" defaultValue={product.rating.rate} precision={0.5} readOnly />
                             </div>
                             <div>
-                                <Button variant="contained" color="primary" className={styles.addToCart}>
+                                <Button variant="contained" color="primary" className={styles.addToCart} onClick={addToCart}>
                                     Add to Cart
                                 </Button>
                             </div>

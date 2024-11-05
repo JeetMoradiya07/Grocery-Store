@@ -5,20 +5,20 @@ import {GrFormSubtract} from "react-icons/gr";
 import {MdDelete} from "react-icons/md";
 
 export default function Cart_Product({onUpdateQuantity, onRemove, index, initialQuantity = 1, title, price, image}) {
-    const [number, setNumber] = useState(initialQuantity);
+    const [quantity, setQuantity] = useState(initialQuantity);
 
     const increment = () => {
-        setNumber((prevNumber) => {
-            const newQuantity = prevNumber + 1;
+        setQuantity((prevQuantity) => {
+            const newQuantity = prevQuantity + 1;
             onUpdateQuantity(index, newQuantity);
             return newQuantity;
         });
     };
 
     const decrement = () => {
-        if (number > 1) {
-            setNumber((prevNumber) => {
-                const newQuantity = prevNumber - 1;
+        if (quantity > 1) {
+            setQuantity((prevQuantity) => {
+                const newQuantity = prevQuantity - 1;
                 onUpdateQuantity(index, newQuantity);
                 return newQuantity;
             });
@@ -29,8 +29,6 @@ export default function Cart_Product({onUpdateQuantity, onRemove, index, initial
         onRemove(index);
     };
 
-    const totalPrice = price * number;
-
     return (
         <div className={styles.product_detail}>
             <div className={styles.product_img}>
@@ -40,31 +38,26 @@ export default function Cart_Product({onUpdateQuantity, onRemove, index, initial
                 <div className={styles.product_data}>
                     <div className={styles.product_name}>
                         <h2>{title}</h2>
-                        <h4>Size - Medium</h4> 
                     </div>
                 </div>
-
                 <div className={styles.product_name2}>
                     <div className={styles.product_quantity}>
                         <div className={styles.product_quantity_subtraction}>
-                            {number > 1 ? (
+                            {quantity > 1 ? (
                                 <GrFormSubtract onClick={decrement} />
                             ) : (
                                 <MdDelete onClick={removeProduct} className={styles.delete_icon} />
                             )}
                         </div>
-
                         <div className={styles.product_quantity_show}>
-                            <h4>{number}</h4>
+                            <h4>{quantity}</h4>
                         </div>
-
                         <div className={styles.product_quantity_addition}>
                             <IoIosAdd onClick={increment} />
                         </div>
                     </div>
-
                     <div className={styles.product_price}>
-                        <h4>$ {totalPrice.toFixed(2)}</h4> {/* Dynamic total price */}
+                        <h4>$ {(price * quantity).toFixed(2)}</h4>
                     </div>
                 </div>
             </div>

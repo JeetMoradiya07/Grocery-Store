@@ -52,6 +52,21 @@
         }
     }
 }
+
+.upCart {
+    height: 100%;
+}
+
+.CartProduct {
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    height: 100%;
+}
+
+.CartProduct::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Edge */
+}
+
 .payment {
     display: flex;
     flex-direction: column;

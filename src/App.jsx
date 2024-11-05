@@ -9,6 +9,7 @@ import Register from "./Components/Login/Register";
 import Product from "./Components/Product/Product"; // Product details component
 import Error from "./Components/UI/Error";
 import {QueryErrorResetBoundary} from "@tanstack/react-query";
+import {CartProvider} from "./Store/CartContext.jsx";
 
 function App() {
     const [errorMessages, setErrorMessages] = useState([]);
@@ -17,19 +18,21 @@ function App() {
     return (
         <>
             <QueryErrorResetBoundary>
-                <Error messages={errorMessages} /> {/* Place Error here */}
-                <Routes>
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={<HomePage />} />
-                        <Route path="about" element={<AboutPage />} />
-                        <Route path="login" element={<Login setErrorMessages={setErrorMessages} />} />
-                        <Route path="register" element={<Register setErrorMessages={setErrorMessages} />} />
-                        <Route path="store" element={isAuthenticated ? <StorePage /> : <Navigate to="/login" />} />
-                        {/* Updated route to handle dynamic product IDs */}
-                        <Route path="*" element={<h2>404 - Not Found</h2>} />
-                    </Route>
-                    <Route path="product/:id" element={isAuthenticated ? <Product /> : <Navigate to="/login" />} />
-                </Routes>
+                <CartProvider>
+                    <Error messages={errorMessages} /> {/* Place Error here */}
+                    <Routes>
+                        <Route path="/" element={<Layout />}>
+                            <Route index element={<HomePage />} />
+                            <Route path="about" element={<AboutPage />} />
+                            <Route path="login" element={<Login setErrorMessages={setErrorMessages} />} />
+                            <Route path="register" element={<Register setErrorMessages={setErrorMessages} />} />
+                            <Route path="store" element={isAuthenticated ? <StorePage /> : <Navigate to="/login" />} />
+                            {/* Updated route to handle dynamic product IDs */}
+                            <Route path="*" element={<h2>404 - Not Found</h2>} />
+                        </Route>
+                        <Route path="product/:id" element={isAuthenticated ? <Product /> : <Navigate to="/login" />} />
+                    </Routes>
+                </CartProvider>
             </QueryErrorResetBoundary>
         </>
     );

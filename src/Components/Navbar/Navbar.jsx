@@ -57,6 +57,7 @@ const Navbar = () => {
             <Sidebar
                 isOpen={isSidebarOpen}
                 onClose={closeSidebar}
+                onClick={openSidebar}
                 cartIsOpen={cartIsOpen}
                 toggleCart={toggleCart}
                 profileIsOpen={profileIsOpen}

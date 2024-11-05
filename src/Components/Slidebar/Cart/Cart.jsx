@@ -1,34 +1,30 @@
 import React, {useEffect, useState} from "react";
 import styles from "./Cart.module.scss";
 import Cart_Product from "./Cart_Product";
-import {fetchCart} from "@/Store/api.js";
 import empty from "../../../assets/empty.mp4";
 
 export default function Cart({onClose}) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const getCart = async () => {
-            try {
-                const cartData = await fetchCart();
-                setProducts(cartData); // cartData is now an array of products
-            } catch (error) {
-                console.error("Error fetching cart:", error);
-            }
-        };
-
-        getCart();
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        setProducts(savedCart);
     }, []);
+
+    const saveCart = (updatedCart) => {
+        setProducts(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+    };
 
     const updateQuantity = (index, newQuantity) => {
         const updatedProducts = [...products];
         updatedProducts[index].quantity = newQuantity;
-        setProducts(updatedProducts);
+        saveCart(updatedProducts);
     };
 
     const removeProduct = (index) => {
         const updatedProducts = products.filter((_, i) => i !== index);
-        setProducts(updatedProducts);
+        saveCart(updatedProducts);
     };
 
     const totalPrice = products.reduce((sum, product) => sum + product.quantity * product.price, 0);
@@ -37,21 +33,21 @@ export default function Cart({onClose}) {
         <>
             <div className={styles.overlay} onClick={onClose} />
             <div className={styles.Cart}>
-                <div>
+                <div className={styles.upCart}>
                     <div className={styles.nev}>
                         <h2>Cart</h2>
                         <button onClick={onClose}>Close</button>
                     </div>
-                    <div>
+                    <div className={styles.CartProduct}>
                         {products.length > 0 ? (
                             products.map((product, index) => (
                                 <Cart_Product
                                     key={product.id}
                                     index={index}
                                     initialQuantity={product.quantity}
-                                    title={product.title} // Pass title
-                                    price={product.price} // Pass price
-                                    image={product.image} // Pass image
+                                    title={product.title}
+                                    price={product.price}
+                                    image={product.image}
                                     onUpdateQuantity={updateQuantity}
                                     onRemove={removeProduct}
                                 />
@@ -70,24 +66,15 @@ export default function Cart({onClose}) {
                     </div>
                     <div className={styles.delivery_date}>
                         <p>
-                            expected delivery date <b>Tomorrow</b>
+                            Expected delivery date: <b>Tomorrow</b>
                         </p>
                     </div>
                     <div className={styles.delivery_payment}>
-                        <div className={styles.total}>
-                            <p>
-                                <b>Total</b>
-                            </p>
-                        </div>
-                        <div>
-                            <p>
-                                <b>$ {totalPrice}</b>
-                            </p>
-                        </div>
+                        <p>
+                            <b>Total</b>: $ {totalPrice.toFixed(2)}
+                        </p>
                     </div>
-                    <div className={styles.pay}>
-                        <button>Go to Checkout</button>
-                    </div>
+                    <button className={styles.pay}>Go to Checkout</button>
                 </div>
             </div>
         </>

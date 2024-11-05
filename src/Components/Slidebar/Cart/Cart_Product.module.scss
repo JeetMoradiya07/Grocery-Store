@@ -3,21 +3,15 @@
     // justify-content: space-evenly;
 }
 .product_img {
-    height: 100px;
-    width: 100px;
-    position: relative;
-    overflow: hidden;
-    background: $radial-bcg;
+    background: #ffffff;
+    border: 1px solid $l-border;
+    border-radius: 7px;
 }
 .product_image {
-    height: auto;
-    width: auto;
-    max-width: 100%;
-    max-height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 100px;
+    aspect-ratio: 1;
+    object-fit: contain;
 }
 .product_info {
     width: 80%;
@@ -108,7 +102,6 @@
     justify-content: space-between;
     border-bottom: 1px solid;
 }
-
 
 .product_quantity_subtraction {
     display: flex;
