@@ -37,7 +37,14 @@ export default function Profile({onClose, onClick}) {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setEditProfile({...editProfile, avatarUrl: reader.result});
+                const newAvatarUrl = reader.result;
+                setEditProfile((prev) => ({...prev, avatarUrl: newAvatarUrl}));
+                setProfile((prev) => ({...prev, avatarUrl: newAvatarUrl}));
+
+                // Update localStorage
+                const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+                const updatedUsers = existingUsers.map((user) => (user.username === profile.username ? {...user, avatarUrl: newAvatarUrl} : user));
+                localStorage.setItem("users", JSON.stringify(updatedUsers));
             };
             reader.readAsDataURL(file);
         }
@@ -50,7 +57,6 @@ export default function Profile({onClose, onClick}) {
         localStorage.setItem("users", JSON.stringify(updatedUsers));
         setIsEditing(false);
     };
-
 
     return (
         <>

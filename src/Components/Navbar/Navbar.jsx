@@ -7,8 +7,12 @@ import {FaUserCircle} from "react-icons/fa";
 import Cart from "../Slidebar/Cart/Cart";
 import Profile from "../Slidebar/Profile/Profile";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
+import {useStore} from "../../Store/StoreContext.jsx"; // Importing the Store context
 
 const Navbar = () => {
+    const {storeState} = useStore();
+    const {priceRange, sortOption, searchQuery} = storeState;
+
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [cartIsOpen, setCartIsOpen] = useState(false);
     const [profileIsOpen, setProfileIsOpen] = useState(false);
@@ -32,17 +36,17 @@ const Navbar = () => {
                 </NavLink>
             </ul>
             <ul className={styles.NavItems}>
-                <li>
+                <li className={styles.responsive}>
                     <NavLink to="/" className={({isActive}) => (isActive ? styles.active : "")}>
                         Home
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/store" className={({isActive}) => (isActive ? styles.active : "")}>
+                <li className={styles.responsive}>
+                    <NavLink to="/store" className={({isActive}) => (isActive ? styles.active : "")} state={{priceRange, sortOption, searchQuery}}>
                         Store
                     </NavLink>
                 </li>
-                <li>
+                <li className={styles.responsive}>
                     <NavLink to="/about" className={({isActive}) => (isActive ? styles.active : "")}>
                         About
                     </NavLink>

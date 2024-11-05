@@ -7,39 +7,24 @@ import {useEffect, useState} from "react";
 import {FiLogIn, FiLogOut} from "react-icons/fi";
 import {IoCartSharp} from "react-icons/io5";
 import {CgProfile} from "react-icons/cg";
+import {AiOutlineHome} from "react-icons/ai";
+import {LiaStoreSolid} from "react-icons/lia";
+import {TiInfoLarge} from "react-icons/ti";
 
 const sidebarVariants = {
     open: {
         clipPath: `circle(1500px at calc(100% - 40px) 40px)`,
-        transition: {
-            type: "spring",
-            stiffness: 30,
-            restDelta: 2,
-        },
+        transition: {type: "spring", stiffness: 30, restDelta: 2},
     },
     closed: {
         clipPath: "circle(16px at calc(100% - 65px) 40px)",
-        transition: {
-            type: "spring",
-            stiffness: 400,
-            damping: 40,
-        },
+        transition: {type: "spring", stiffness: 400, damping: 40},
     },
 };
 
 const pfpVariants = {
-    open: {
-        top: "20px",
-        right: "50%",
-        transform: "translateX(50%)",
-        zoom: 3,
-    },
-    closed: {
-        top: "25px",
-        right: "50px",
-        transform: "translateX(0)",
-        zoom: 1,
-    },
+    open: {top: "20px", right: "50%", transform: "translateX(50%)", zoom: 3},
+    closed: {top: "25px", right: "50px", transform: "translateX(0)", zoom: 1},
 };
 
 const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
@@ -48,22 +33,16 @@ const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-            const loggedInUsername = JSON.parse(localStorage.getItem("authUser"));
-            const loggedInUser = existingUsers.find((user) => user.username === loggedInUsername);
-
-            if (loggedInUser) {
-                setUserDetails({name: loggedInUser.name, pfp: loggedInUser.pfp});
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const authUser = JSON.parse(localStorage.getItem("authUser"));
+            const loggedUser = users.find((user) => user.username === authUser);
+            if (loggedUser) {
+                setUserDetails({name: loggedUser.name, pfp: loggedUser.avatarUrl});
             }
         }
     }, [isAuthenticated]);
 
-    const stopPropagation = (e) => e.stopPropagation();
-
-    const handleOverlayClick = () => {
-        onClose();
-    };
-
+    const handleOverlayClick = () => onClose();
     const handleLogout = () => {
         localStorage.removeItem("auth");
         localStorage.removeItem("authUser");
@@ -79,13 +58,12 @@ const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
                 initial={false}
                 animate={isOpen ? "open" : "closed"}
                 variants={sidebarVariants}
-                onClick={stopPropagation}
+                onClick={(e) => e.stopPropagation()}
             >
                 <div className={styles.pfpWrapper}>
                     <motion.div className={styles.pfp} onClick={onClick} variants={pfpVariants} animate={isOpen ? "open" : "closed"}>
                         {userDetails.pfp ? <img src={userDetails.pfp} alt="Profile" className={styles.profileImage} /> : <FaUserCircle size={30} />}
                     </motion.div>
-
                     <div className={styles.userName}>
                         <h2>{userDetails.name}</h2>
                     </div>
@@ -104,6 +82,15 @@ const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
                             <MenuItem icon={<IoCartSharp size={20} />} onClick={toggleCart}>
                                 Cart
                             </MenuItem>
+                            <MenuItem className={styles.responsive} icon={<AiOutlineHome size={20} />} link="/" onClick={onClose}>
+                                Home
+                            </MenuItem>
+                            <MenuItem className={styles.responsive} icon={<LiaStoreSolid size={20} />} link="/store" onClick={onClose}>
+                                Store
+                            </MenuItem>
+                            <MenuItem className={styles.responsive} icon={<TiInfoLarge size={20} />} link="/about" onClick={onClose}>
+                                About
+                            </MenuItem>
                             <MenuItem icon={<FiLogOut size={20} />} onClick={handleLogout}>
                                 Logout
                             </MenuItem>
@@ -118,12 +105,11 @@ const Sidebar = ({isOpen, onClose, onClick, toggleCart, toggleProfile}) => {
         </>
     );
 };
-
-const MenuItem = ({icon, children, link, onClick}) => {
+const MenuItem = ({icon, children, link, onClick, className}) => {
     return (
-        <motion.li whileHover={{scale: 1.1}} whileTap={{scale: 0.95}}>
+        <motion.li whileHover={{scale: 1.1}} whileTap={{scale: 0.95}} className={className}>
             {link ? (
-                <NavLink to={link} onClick={onClick} className={styles.menuLink}>
+                <NavLink to={link} onClick={onClick} className={({isActive}) => `${styles.menuLink} ${isActive ? styles.activeLink : ""}`}>
                     <div className={styles.icons}>{icon}</div>
                     <span className={styles.iconDetail}>{children}</span>
                 </NavLink>

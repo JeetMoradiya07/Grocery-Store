@@ -6,8 +6,22 @@ import {fetchProductById} from "../../Store/api.js";
 import Loading from "../UI/Loading.jsx";
 import Navbar from "../Navbar/Navbar.jsx";
 import {useCart} from "../../Store/CartContext.jsx";
+import {useLocation} from "react-router-dom";
+import {useStore} from "../../Store/StoreContext"; // Import the context
+import {useEffect} from "react";
 
 export default function Product() {
+    const location = useLocation();
+    const {priceRange, sortOption, searchQuery} = location.state || {}; // Get state from location
+    const {setStoreState} = useStore();
+
+    // On mount, set the store state if it exists
+    useEffect(() => {
+        if (priceRange && sortOption && searchQuery) {
+            setStoreState({priceRange, sortOption, searchQuery});
+        }
+    }, [priceRange, sortOption, searchQuery, setStoreState]);
+
     const {id} = useParams();
 
     const {openCart} = useCart();

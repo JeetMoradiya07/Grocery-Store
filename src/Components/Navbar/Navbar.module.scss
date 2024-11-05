@@ -34,6 +34,12 @@
         align-items: center;
         padding: 20px;
     }
+
+    .responsive {
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
 }
 
 .login {

@@ -1,11 +1,23 @@
 .sliderContainer {
-    position: relative; 
-    display: flex; 
+    position: relative;
+    display: flex;
     align-items: center;
 }
 
 .swiper {
-    width: 90%; 
+    width: 90%;
+
+    @media (max-width: 1024px) {
+        width: 85%;
+    }
+
+    @media (max-width: 768px) {
+        width: 75%;
+    }
+
+    @media (max-width: 568px) {
+        width: 70%;
+    }
 }
 
 .prevButton,
@@ -18,17 +30,20 @@
     justify-content: center;
     background: transparent;
     color: $p-c;
-    top: 50%; 
-    border: 2px solid $p-c; 
-    border-radius: 50%; 
-    cursor: pointer; 
-    z-index: 100; 
+    top: 50%;
+    border: 2px solid $p-c;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
     opacity: 0.9;
     transition: all 0.1s ease-in-out;
 }
 
 .prevButton {
-    left: 5px; 
+    left: 5px;
+    &:hover {
+        transform: scale(1.1);
+    }
     &:active {
         transform: scale(0.9);
         opacity: 1;
@@ -36,7 +51,10 @@
 }
 
 .nextButton {
-    right: 5px; 
+    right: 5px;
+    &:hover {
+        transform: scale(1.1);
+    }
     &:active {
         transform: scale(0.9);
         opacity: 1;

@@ -11,6 +11,10 @@
     z-index: 100;
     overflow: hidden;
 
+    @media (max-width: 425px) {
+        width: 100%;
+    }
+
     ul {
         padding: 20px;
     }
@@ -52,17 +56,9 @@
     }
 }
 
-.Button {
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: #0055ff;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
 .pfpWrapper {
+    border-radius: 25px;
+
     .userName {
         text-align: center;
         position: relative;
@@ -73,6 +69,7 @@
     .profileImage {
         height: 30px;
         width: 30px;
+        border-radius: 25px;
     }
 }
 
@@ -86,6 +83,7 @@
     transform: translateX(50%);
     transition: all 0.1s;
 }
+
 .menu_items {
     list-style: none;
     display: flex;
@@ -93,23 +91,31 @@
     gap: 15px;
     padding: 0;
 
+    .responsive {
+        display: none;
+
+        @media (max-width: 768px) {
+            display: flex;
+        }
+    }
+
     .icons {
-        padding: 7px; // Apply padding
-        border: 2px solid #9f7de8; // Border style
-        border-radius: 50px; // Rounded corners
-        display: inline-flex; // Make sure it fits the icon
-        justify-content: center; // Center the icon
-        align-items: center; // Center vertically
-        background-color: transparent; // Ensure it blends well
-        transition: background-color 0.3s; // Smooth hover effect
+        padding: 7px;
+        border: 2px solid #9f7de8;
+        border-radius: 50px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        transition: background-color 0.3s;
     }
 
     .iconDetail {
         display: flex;
-        padding: 7px; // Apply padding
-        border: 2px solid #9f7de8; // Border style
+        padding: 7px;
+        border: 2px solid #9f7de8;
         width: 100%;
-        border-radius: 50px; // Rounded corners
+        border-radius: 50px;
         font-size: 16px;
     }
 
@@ -124,6 +130,11 @@
 
         &:hover {
             background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .activeLink {
+            color: #9f7de8;
+            font-weight: bold;
         }
     }
 }

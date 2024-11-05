@@ -116,12 +116,9 @@
                 flex: 0 0 calc(30%);
                 margin-bottom: 60px;
 
-                @media (max-width: 1200px) {
-                    flex: 0 0 calc(45%);
-                }
-
+                
                 @media (max-width: 768px) {
-                    flex: 0 0 calc(100%);
+                    flex: 0 0 calc(45%);
                 }
             }
         }

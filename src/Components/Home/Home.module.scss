@@ -84,7 +84,9 @@
                 margin-top: 7px;
             }
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
+            height: calc(170vh - 20px);
+
             .introImg1 {
                 width: 40%;
                 top: 35%;
@@ -99,6 +101,50 @@
                 width: 40%;
                 top: 60%;
                 left: 35%;
+            }
+            .introSell {
+                top: 5%;
+            }
+        }
+
+        @media (max-width: 668px) {
+            height: calc(150vh - 20px);
+            .introImg1 {
+                width: 40%;
+                top: 40%;
+                left: 33%;
+            }
+            .introImg2 {
+                width: 40%;
+                top: 50%;
+                left: 67%;
+            }
+            .introImg3 {
+                width: 40%;
+                top: 70%;
+                left: 37%;
+            }
+            .introSell {
+                top: 5%;
+            }
+        }
+        @media (max-width: 568px) {
+            height: calc(150vh - 20px);
+
+            .introImg1 {
+                width: 50%;
+                top: 40%;
+                left: 33%;
+            }
+            .introImg2 {
+                width: 50%;
+                top: 50%;
+                left: 67%;
+            }
+            .introImg3 {
+                width: 50%;
+                top: 70%;
+                left: 37%;
             }
             .introSell {
                 top: 5%;
