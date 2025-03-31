@@ -6,7 +6,7 @@ import logo from "/src/assets/Images/WDP.png";
 import {FaUserCircle} from "react-icons/fa";
 import Cart from "../Slidebar/Cart/Cart";
 import Profile from "../Slidebar/Profile/Profile";
-import ThemeToggle from "./ThemeToggle/ThemeToggle";
+// import ThemeToggle from "./ThemeToggle/ThemeToggle";
 import {useStore} from "../../Store/StoreContext.jsx"; // Importing the Store context
 
 const Navbar = () => {
@@ -51,9 +51,9 @@ const Navbar = () => {
                         About
                     </NavLink>
                 </li>
-                <li>
+                {/* <li>
                     <ThemeToggle />
-                </li>
+                </li> */}
                 <li className={styles.login} onClick={openSidebar}>
                     <FaUserCircle size={30} />
                 </li>
